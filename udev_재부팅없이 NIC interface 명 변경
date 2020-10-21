@@ -9,4 +9,7 @@
 3. ifcfg 파일 변경
   - # mv /etc/sysconfig/network-scripts/ifcfg-eth0 /etc/sysconfig/network-scripts/ifcfg-eth1
   
-  
+ 
+ 
+참조
+  - https://serverfault.com/questions/910406/persistently-rename-a-linux-network-interface-without-udev-reboot/941659
