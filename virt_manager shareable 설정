@@ -1,0 +1,7 @@
+1. 디스크 생성
+  - raw 형식으로 생성
+  - virt-manager에서 해당 볼륨에 sareable 체크
+  
+2. 오류
+  - Error changing VM configuration: unsupported configuration: shared access for disk 'vdb' requires use of supported storage format
+  - qcow2 파일 형식에 문제가 있는 내용이므로 해당 볼륨 raw로 변경
