@@ -1,0 +1,13 @@
+1. pv create 명령 실행 시 오류 출력
+  - # pvcreate /dev/vdb
+      Device /dev/vdb excluded by a filter.
+      
+  - filter에 정의되지 않은 볼륨이라서 pv를 생성하지 못함
+  - # vi /etc/lvm/lvm.conf 
+      filter 추가 또는 filter 설정 내용 제거
+  - # dracut -H -f initramfs-$(uname -r).img $(uname -r)
+
+
+
+참조
+  - https://www.simplstor.com/index.php/support/support-faqs/118-lvm-dev-excluded-by-filter
