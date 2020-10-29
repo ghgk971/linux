@@ -1,0 +1,36 @@
+1. 패키지 설치
+  - # yum install libguestfs-tools virt-install
+  
+2. qcow2 이미지를 가져올수 있도록 repo 설정
+  - # vi /etc/virt-builder/repos.d/local.conf
+      [rhel6]
+      uri=http://[IP]/kvm_imgs/rhel6/index
+      proxy=off
+      [rhel7]
+      uri=http://[IP]/kvm_imgs/rhel7/index
+      proxy=off
+      [rhel8]
+      uri=http://[IP]/kvm_imgs/rhel8/index
+      proxy=off
+      
+3. guest os image 생성
+  - # virt-builder [OS_NAME] -o [qcow2_img_PATH] --root-password password:[password] --size [size_GB]
+  - # virt-builder rhel8.1 (단순하게 생성)
+  - # virt-builder rhel8.1 -o /var/lib/libvirt/images/rhel8.1_test.qcow2 --root-password password:[password] --size 10G
+  
+4. 생성된 os image를 이용하여 VM 생성
+  - # virt-install --name [VM_NAME] --memory [memory_MB] --vcpus [cpu] --os-variant [os_version] --network [network_conf] --import --disk [disk_path]
+  - # virt-install --name rhel8.1_vm --memory 2048 --vcpus 2 --os-variant rhel8.1 --network bridge=br1,model=virtio --import --disk /var/lib/libvirt/images/rhel8.1_test.qcow2
+  
+  
+참조
+  - 이미지를 더 빠르게 빌드하기 위해서는 repo에 있는 이미지를 cache 해 놓을 수 있음
+  - # virt-builder --cache-all-templates
+  
+  - # virt-builder --print-cache (확인)
+  cache directory: /root/.cache/virt-builder
+  rhel6.5 x86_64 no
+  rhel6.6 x86_64 no
+  rhel6.7 x86_64 cached
+  rhel6.8 x86_64 cached
+  
