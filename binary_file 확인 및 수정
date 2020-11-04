@@ -1,0 +1,22 @@
+1. binary 파일 읽기
+  - # xxd [binary file]
+  - # xxd [binary file] >> /root/test_file
+  - # cat /root/test_file | grep [command]
+  
+  - # strings [binary file]
+  - # strings [binary file] | grep [command]
+  
+  - # vim [binary file]
+    * :% !xxd
+
+  - # yum install hexedit
+  - # hexedit [binary file]
+  
+
+참조
+  [xxd, strings]
+  - https://stackoverflow.com/questions/1765311/how-to-view-files-in-binary-from-bash
+  - https://unix.stackexchange.com/questions/282215/how-to-view-a-binary-file
+  
+  [vim]
+  - https://askubuntu.com/questions/786658/how-do-i-edit-the-binary-or-hexadecimal-data-of-a-file-in-ubuntu
