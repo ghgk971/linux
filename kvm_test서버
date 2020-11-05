@@ -19,8 +19,8 @@
   - # virt-builder rhel8.1 -o /var/lib/libvirt/images/rhel8.1_test.qcow2 --root-password password:[password] --size 10G
   
 4. 생성된 os image를 이용하여 VM 생성
-  - # virt-install --name [VM_NAME] --memory [memory_MB] --vcpus [cpu] --os-variant [os_version] --network [network_conf] --import --disk [disk_path]
-  - # virt-install --name rhel8.1_vm --memory 2048 --vcpus 2 --os-variant rhel8.1 --network bridge=br1,model=virtio --import --disk /var/lib/libvirt/images/rhel8.1_test.qcow2
+  - # virt-install --import --name [VM_NAME] --memory [memory_MB] --vcpus [cpu] --os-variant [os_version] --network [network_conf] --import --disk [disk_path]
+  - # virt-install --import --name rhel8.1_vm --memory 2048 --vcpus 2 --os-variant rhel8.1 --network bridge=br1,model=virtio --import --disk /var/lib/libvirt/images/rhel8.1_test.qcow2
   
   
 참조
@@ -53,3 +53,31 @@
 
 
   - https://www.cyberciti.biz/faq/how-to-install-kvm-on-centos-8-headless-server/
+
+
+
+
+
+
+
+[자동화 스크립트 - 명령어로 사용]
+#!/bin/bash
+
+if [ $1 ] && [ $2 ] && [ $3 ] && [ $4 ] && [ $5 ]
+then
+  virt-builder $1 -o /var/lib/libvirt/images/$2.qcow2 --root-password password:rplinux --size $3G
+
+  virt-install --import --name $2 --vcpus $4 --memory $5 --os-variant $1 --network bridge=$6,model=virtio --disk /var/lib/libvirt/images/$2.qcow2
+
+else
+  echo -e "\e[1;31mcommand\e[m : ex) # create_vm [os_name] [qcow_image_name/.qcow2] [size/G] [vcpu] [memory] [network/ex)virbr0]"
+  echo -e "\n\e[1;32m[Network_list]\e[m"
+  NET_LIST=$(virsh net-list | egrep -v 'Autostart|--------' | awk '{print $1}' | sed ':a;N;$!ba;s/\n/ /g')
+  NET_INFO=""
+  for i in $NET_LIST
+  do
+    echo "$i"
+    ip -4 addr show $(virsh net-info $i | grep Bridge | awk '{print $2}')
+  done
+
+fi
