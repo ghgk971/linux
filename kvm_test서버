@@ -68,7 +68,10 @@
 
 if [ $1 ] && [ $2 ] && [ $3 ] && [ $4 ] && [ $5 ]
 then
-  virt-builder $1 -o /var/lib/libvirt/images/$2.qcow2 --root-password password:rplinux --uninstall cloud-init --size $3G --format qcow2
+  virt-builder $1 -o /var/lib/libvirt/images/$2.qcow2 --root-password password:rplinux --uninstall cloud-init --size $3G --format qcow2 \
+  --run-command 'sed -i s/^PasswordAuthentication.*/PasswordAuthentication\ yes/ /etc/ssh/sshd_config' \
+  --run-command 'sed -i s/^PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config' \
+  --run-command 'sed -i s/^SELINUX=enforcing/SELINUX=disabled/ /etc/selinux/config'
 
   virt-install --import --name $2 --vcpus $4 --memory $5 --os-variant $1 --network network=$6,model=virtio --disk /var/lib/libvirt/images/$2.qcow2,format=qcow2,bus=virtio &
 
@@ -84,6 +87,7 @@ else
   done
 
 fi
+
 
 
 
