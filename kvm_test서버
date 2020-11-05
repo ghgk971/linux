@@ -39,6 +39,15 @@
   
   - 아래 에러 발생 조치 (rhel 8.2)
     virt-builder: error: external command ‘'curl' -q --config
+    
+    * 생성되는 config 파일 while 문 이용하여 복사
+      # while true ; do cp /tmp/cirt-builder* /root
+    * 해당 파일로 curl 명령 수행
+      # curl -q --config [file]
+    * curl 명령 수행 시 문제 확인
+      위 발생했던 내용은 proxy 서버 설정으로 인해 발생
+    * proxy 서버 제거
+    
 
 
 
