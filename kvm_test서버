@@ -62,13 +62,15 @@
 
 [자동화 스크립트 - 명령어로 사용]
 
+[생성]
+
 #!/bin/bash
 
 if [ $1 ] && [ $2 ] && [ $3 ] && [ $4 ] && [ $5 ]
 then
-  virt-builder $1 -o /var/lib/libvirt/images/$2.qcow2 --root-password password:rplinux --size $3G
+  virt-builder $1 -o /var/lib/libvirt/images/$2.qcow2 --root-password password:rplinux --uninstall cloud-init --size $3G --format qcow2
 
-  virt-install --import --name $2 --vcpus $4 --memory $5 --os-variant $1 --network network=$6,model=virtio --disk /var/lib/libvirt/images/$2.qcow2 &
+  virt-install --import --name $2 --vcpus $4 --memory $5 --os-variant $1 --network network=$6,model=virtio --disk /var/lib/libvirt/images/$2.qcow2,format=qcow2,bus=virtio &
 
 else
   echo -e "\e[1;31mcommand\e[m : ex) # create_vm [os_name] [qcow_image_name/.qcow2] [size/G] [vcpu] [memory] [network/ex)default]"
@@ -80,6 +82,36 @@ else
     echo "$i"
     ip -4 addr show $(virsh net-info $i | grep Bridge | awk '{print $2}')
   done
+
+fi
+
+
+
+
+
+[삭제]
+
+#!/bin/bash
+
+if [ $1 ]
+then
+  virsh shutdown $1
+  sleep 3
+  SNAP=$(virsh snapshot-list $1 | egrep -v 'Creation|-------' | awk '{print $1}' | sed ':a;N;$!ba;s/\n/ /g')
+    for i in $SNAP
+    do
+      virsh snapshot-delete $1 $i
+    done
+
+  VOL_LIST=$(virsh domblklist --domain $1 | egrep -v 'Target|-------' | awk '{print $2}' | sed ':a;N;$!ba;s/\n/ /g')
+  virsh undefine --domain $1
+  rm -rf $(echo $VOL_LIST)
+
+
+else
+  echo -e "\e[1;31mcommand\e[m : ex) # delete_vm [vm_name]"
+  echo -e "\n\e[1;32m[vm_list]\e[m"
+  virsh list --all
 
 fi
 
