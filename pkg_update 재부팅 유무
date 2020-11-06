@@ -1,0 +1,12 @@
+1. pkg 업데이트 이후 재부팅 유무 확인
+  - # needs-restarting -r (# yum install yum-utils)
+  
+2. 옵션
+  - -h, --help
+    Display a help message, and then quit.
+  - -u, --useronly
+    Show processes for my userid only.
+  - -r, --reboothint
+    Only report whether a full reboot is required (exit code 1) or not (exit code 0).
+  - -s, --services
+    List the affected systemd services only.
