@@ -58,3 +58,6 @@
 
 참조 
   - https://access.redhat.com/solutions/5056991 (crontab stdin)
+  - https://gywn.net/2015/02/linux-cronjob-makes-disk-issue/ (mlocate, makewhatis)
+  - https://wiki.gentoo.org/wiki/Prelink/ko (prelink)
+  
