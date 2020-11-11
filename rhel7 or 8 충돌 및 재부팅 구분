@@ -1,2 +1,139 @@
+1. lasx -x 를 이용하여 검사
+  - # last -Fxn2 shutdown reboot
+  
+    [정상]
+    reboot   system boot  4.18.0-80.el8.x8 Mon Aug 31 06:33:11 2020   still running
+    shutdown system down  4.18.0-80.el8.x8 Mon Aug 31 06:33:01 2020 - Mon Aug 31 06:33:11 2020  (00:00)
+    정상적으로 종료 된 경우 reboot 다음 라인으로 shutdown이 오게 됨
+    
+    [비정상]
+    reboot   system boot  4.18.0-147.5.1.e Tue Sep  1 07:16:25 2020   still running
+    reboot   system boot  4.18.0-147.5.1.e Mon Aug  3 07:10:56 2020   still running
+    비정상적으로 종료될 경우 연속된 reboot 또는 wtmp 파일 크래시 전에 잘리거나 회전 된 경우 생략된 내용으로 비정상이라 추론 함
+    
+    
+2. ausearch로 감사 로그 검사
+  - # ausearch -i -m system_boot, system_shutdown | tail -4 (최근 2개의 종료 또는 재부팅을 확인)
+  - SYSTEM_SHUTDOWN 다음에 SYSTE_BOOT가 보고된다면 정상이며, SYSTEM_BOOT가 연속되거나 단일 행만 확인될 경우 비정상
+  
+    [정상]
+    ----
+    type=SYSTEM_SHUTDOWN msg=audit(08/31/2020 06:33:01.571:595) : pid=27156 uid=root auid=unset ses=unset subj=system_u:system_r:init_t:s0 msg=' 
+    comm=systemd-update-utmp exe=/usr/lib/systemd/systemd-update-utmp hostname=? addr=? terminal=? res=success' 
+    ----
+    type=SYSTEM_BOOT msg=audit(08/31/2020 06:33:12.838:9) : pid=828 uid=root auid=unset ses=unset subj=system_u:system_r:init_t:s0 msg=' 
+    comm=systemd-update-utmp exe=/usr/lib/systemd/systemd-update-utmp hostname=? addr=? terminal=? res=success' 
+  
+    [비정상]
+    ----
+    type=SYSTEM_BOOT msg=audit(09/20/2016 01:10:32.392:7) : pid=657 uid=root auid=unset ses=unset subj=system_u:system_r:init_t:s0 msg=' 
+    comm=systemd-update-utmp exe=/usr/lib/systemd/systemd-update-utmp hostname=? addr=? terminal=? res=success' 
+    ----
+    type=SYSTEM_BOOT msg=audit(09/20/2016 01:11:41.134:7) : pid=656 uid=root auid=unset ses=unset subj=system_u:system_r:init_t:s0 msg=' 
+    comm=systemd-update-utmp exe=/usr/lib/systemd/systemd-update-utmp hostname=? addr=? terminal=? res=success' 
+
+    [비정상 2] - 하나의 SYSTEM_BOOT만 존재하는 것은 시스템이 중단되기 전 너무 오래 가동되어 있어 이전 재부팅 감사 로그가 순환되어 없는 경우도 발생
+    ----
+    type=SYSTEM_BOOT msg=audit(09/01/2020 07:16:27.069:10) : pid=1057 uid=root auid=unset ses=unset subj=system_u:system_r:init_t:s0 msg=' 
+    comm=systemd-update-utmp exe=/usr/lib/systemd/systemd-update-utmp hostname=? addr=? terminal=? res=success'
+    
+    
+3. custom service unit 생성
+  - 종료시에만 실행되는 서비스 생성
+  - # cat /etc/systemd/system/set_gracefulshutdown.service
+      [Unit]
+      Description=Set flag for graceful shutdown
+      DefaultDependencies=no
+      RefuseManualStart=true
+      Before=shutdown.target
+
+      [Service]
+      Type=oneshot
+      ExecStart=/bin/touch /root/graceful_shutdown
+
+      [Install]
+      WantedBy=shutdown.target
+  - # systemctl daemon-reload
+  - # systemctl enable set_gracefulshutdown
+  
+  - 시작시에만 실행되는 서비스 생성
+  - # cat /etc/systemd/system/check_graceful.service
+      [Unit]
+      Description=Check if previous system shutdown was graceful
+      ConditionPathExists=/root/graceful_shutdown
+      RefuseManualStart=true
+      RefuseManualStop=true
+
+      [Service]
+      Type=oneshot
+      RemainAfterExit=true
+      ExecStart=/bin/rm /root/graceful_shutdown
+
+      [Install]
+      WantedBy=multi-user.target
+  - # systemctl daemon-reload
+  - # systemctl enable check_graceful
+  
+  - 재부팅 이후 정상 여부 확인
+  - # systemctl is-active check_graceful && echo GOOD || echo BAD
+  - # systemctl status check_graceful
+  
+    [정상]
+    active
+    GOOD
+    
+    ● check_graceful.service - Check if system booted after a graceful shutdown
+       Loaded: loaded (/etc/systemd/system/check_graceful.service; enabled; vendor preset: disabled)
+       Active: active (exited) since Tue 2016-09-20 01:10:32 EDT; 20s ago
+      Process: 669 ExecStart=/bin/rm /root/graceful_shutdown (code=exited, status=0/SUCCESS)
+     Main PID: 669 (code=exited, status=0/SUCCESS)
+       CGroup: /system.slice/check_graceful.service
+
+    Sep 20 01:10:32 a72.example.com systemd[1]: Starting Check if system booted after a graceful shutdown...
+    Sep 20 01:10:32 a72.example.com systemd[1]: Started Check if system booted after a graceful shutdown.
+    
+    [비정상]
+    inactive
+    BAD
+
+    ● check_graceful.service - Check if system booted after a graceful shutdown
+       Loaded: loaded (/etc/systemd/system/check_graceful.service; enabled; vendor preset: disabled)
+       Active: inactive (dead)
+    Condition: start condition failed at Tue 2016-09-20 01:11:41 EDT; 16s ago
+               ConditionPathExists=/root/graceful_shutdown was not met
+
+    Sep 20 01:11:41 a72.example.com systemd[1]: Started Check if system booted after a graceful shutdown.
+    
+    
+4. journalctl을 사용하여 시스템 저널에서 이전 부팅 검사
+  - systemd-journald 디스크에 영구 저널을 유시하도록 /etc/systemd/journald.conf를 수정
+  - 로그 디렉토리 생성 및 권한 수정
+  - # mkdir /var/log/journal; systemd-tmpfiles --create --prefix /var/log/journal 2>/dev/null
+  - systemd에 journal 디스크 플러시
+  - # systemctl -s SIGUSR1 kill systemd-journald
+  - 재부팅
+  - # reboot
+  
+  - 오름차순으로 부팅 목록을 가져오려면 0 - 부팅된 이후 현재 런타임 로그 확인
+  - -1 은 부팅 이전의 로그, -2는 그 전에 부팅 등
+  - # journalctl --list-boots
+      -2 e1dbd8f133f643d1a816605d96f3ca07 2020-03-27 금 22:31:25 UTC-2020-05-14 목 01:02:51 UTC
+      -1 1969253689e842deaea06ca32f4650c7 Thu 2020-05-14 01:10:00 UTC ~ Thu 2020-06-04 08:29:42 UTC
+       0 26a4a2ff48594778850d917a7e2ad195 Tue 2020-09-01 07:16:20 UTC — Tue 2020-09-01 19:11:20 UTC
+  - # journalctl -b -1 -n
+      -- Logs begin at Tue 2016-09-20 01:01:15 EDT, end at Tue 2016-09-20 01:21:33 EDT. --
+      Sep 20 01:21:19 a72.example.com systemd[1]: Stopped Create Static Device Nodes in /dev.
+      Sep 20 01:21:19 a72.example.com systemd[1]: Stopping Create Static Device Nodes in /dev...
+      Sep 20 01:21:19 a72.example.com systemd[1]: Reached target Shutdown.
+      Sep 20 01:21:19 a72.example.com systemd[1]: Starting Shutdown.
+      Sep 20 01:21:19 a72.example.com systemd[1]: Reached target Final Step.
+      Sep 20 01:21:19 a72.example.com systemd[1]: Starting Final Step.
+      Sep 20 01:21:19 a72.example.com systemd[1]: Starting Reboot...
+      Sep 20 01:21:19 a72.example.com systemd[1]: Shutting down.
+      Sep 20 01:21:19 a72.example.com systemd-shutdown[1]: Sending SIGTERM to remaining processes...
+      Sep 20 01:21:19 a72.example.com systemd-journal[483]: Journal stopped
+  - 문제가 발생하면 journald에 인덱싱이 나빠져 journalctl -b -1 명령만 오류를 제공하므로 해당 방법은 덜 신뢰 하게 됨 (2016년 이후 수정 여부는 알 수 없음)
+  
+      
 참조 
   - https://access.redhat.com/articles/2642741
