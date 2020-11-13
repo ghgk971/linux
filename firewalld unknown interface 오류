@@ -2,17 +2,17 @@
   - # systemctl restart network
   - # systemctl status firewalld
       ● firewalld.service - firewalld - dynamic firewall daemon
-       Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
-       Active: active (running) since Thu 2020-11-12 20:20:40 EST; 47min ago
-         Docs: man:firewalld(1)
-     Main PID: 1466 (firewalld)
-       CGroup: /system.slice/firewalld.service
+        Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
+        Active: active (running) since Thu 2020-11-12 20:20:40 EST; 47min ago
+          Docs: man:firewalld(1)
+       Main PID: 1466 (firewalld)
+        CGroup: /system.slice/firewalld.service
                └─1466 /usr/bin/python -Es /usr/sbin/firewalld --nofork --nopid
 
-    Nov 12 20:24:03 localhost.localdomain firewalld[1466]: WARNING: failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring for run-time.
-    Nov 12 20:24:03 localhost.localdomain firewalld[1466]: WARNING: ICMP type 'reject-route' is not supported by the kernel for ipv6.
-    Nov 12 20:24:03 localhost.localdomain firewalld[1466]: WARNING: reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring for run-time.
-    Nov 12 20:24:12 localhost.localdomain firewalld[1466]: ERROR: UNKNOWN_INTERFACE: 'eth0' is not in any zone
+      Nov 12 20:24:03 localhost.localdomain firewalld[1466]: WARNING: failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring for run-time.
+      Nov 12 20:24:03 localhost.localdomain firewalld[1466]: WARNING: ICMP type 'reject-route' is not supported by the kernel for ipv6.
+      Nov 12 20:24:03 localhost.localdomain firewalld[1466]: WARNING: reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring for run-time.
+      Nov 12 20:24:12 localhost.localdomain firewalld[1466]: ERROR: UNKNOWN_INTERFACE: 'eth0' is not in any zone
 
   - # cd /etc/sysconfig/network-scripts (ifcfg-파일 및 내용 정상 여부 확인)
   
