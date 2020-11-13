@@ -1,0 +1,5 @@
+1. network restart 시 firewalld unknown interface 오류 발생
+  - # systemctl restart network
+  - # systemctl status firewalld
+  - # cd /etc/sysconfig/network-scripts (ifcfg-파일 및 내용 정상 여부 확인)
+  
