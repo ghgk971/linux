@@ -1,0 +1,97 @@
+1. directory 생성
+  - # mkdir -p /PG/[db_name]
+  - # mkdir -p /data/[db_name]
+  - # mkdir -p /data/[db_name]/data/pg  # base directory
+  - # mkdir -p /data/[db_name]/pg_xlog  # WAL log directory
+  - # mkdir -p /data/[db_name]/TS01     # tablespace directory
+  - # mkdir -p /data/[db_name]/arch     # archive log directory
+  
+2. 소유자 변경
+  - # chown -R [user]:[group] /PG/
+  - # coown -R [user]:[group] /data/
+  
+3. 권한 변경
+  - # chmod -R 0755 /data/
+  
+4. bash_profile 설정
+  - # su - [user]
+  - $ vi ~/.bash_profile
+      export PGHOME=/PG/[db_name]/pgsql
+      export PATH=$PGHOME/bin:$PATH
+      export PGDATA=/data/[db_name]/data/pg
+      export PGDATABASE=[db_name]
+      export PGUSER=[db_user]
+      export PGPORT=[port]
+  - $ source ~/.bash_profile
+  
+5. DB 엔진 설치
+  - $ tar zxvf edb-10.7.tar.gz
+  - $ vi config_param
+      mode=unattended
+      extract-only=yes
+      prefix=/PG/[db_name]/pgsql       #PGHOME
+  - $ ./edb-10.7.run --optionfile ./config_param
+  
+6. initdb
+  - $ initdb --pgdata='/data/[db_name]/data/pg' --waldir='/data/[db_name]/pg_xlog --encoding=[encoding] --locale=[locale] --username=[db_user]
+  - $ initdb --pgdata='/data/[db_name]/data/pg' --waldir='/data/[db_name]/pg_xlog --encoding=UTF8 --locale=C --username=pgsys
+
+7. 설정
+  - $ vi [data_directory]/postgresql.conf
+      listen_addresses = '*'
+      port = {{ DB Port }}
+      max_connections = 500
+      superuser_reserved_connections = 3
+      shared_buffers = {{ min(memory / 4, 8GB) }}
+      temp_buffers = 16MB
+      max_prepared_transactions = 0
+      work_mem = 16MB
+      maintenance_work_mem = 100MB
+      autovacuum_work_mem = {{ memory / 8 }}
+      dynamic_shared_memory_type = posix
+      temp_file_limit = -1
+      wal_level=replica
+      wal_buffers = 16MB
+      max_wal_size = 4GB
+      min_wal_size = 1GB
+      checkpoint_completion_target = 0.9
+      archive_mode = on
+      archive_command = 'cp %p /data/{{ Database name }}/arch/%f'
+      archive_timeout = 1800
+      enable_bitmapscan = on
+      enable_hashagg = on
+      enable_hashjoin = on
+      enable_indexscan = on
+      enable_indexonlyscan = on
+      enable_material = on
+      enable_mergejoin = on
+      enable_nestloop = on
+      enable_seqscan = on
+      seq_page_cost = 1.0
+      random_page_cost = 2.0
+      cpu_tuple_cost = 0.01
+      cpu_index_tuple_cost = 0.005
+      cpu_operator_cost = 0.0025
+      effective_cache_size = {{ memory / 2 }}
+      log_destination = 'stderr'
+      logging_collector = on
+      log_filename = '{{ Database name }}-%Y%m%d.log'
+      log_rotation_age = 1d
+      log_rotation_size = 0
+      log_min_messages = warning
+      log_min_duration_statement = 60000
+      log_connections = on
+      log_duration = off
+      log_line_prefix = '%t [%e] %u@%r/%d (%p) '
+      log_statement = 'ddl'
+      log_timezone = '{{ Time zone }}'
+      autovacuum = on
+      log_autovacuum_min_duration = -1
+      autovacuum_max_workers = 5
+      datestyle = 'iso, mdy'
+      timezone = '{{ Time zone }}'
+      lc_messages = 'C'
+      lc_monetary = 'C'
+      lc_numeric = 'C'
+      lc_time = 'C'
+      default_text_search_config = 'pg_catalog.english'
