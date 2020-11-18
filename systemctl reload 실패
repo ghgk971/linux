@@ -1,0 +1,55 @@
+1. systemctl reload 실패
+  - # systemctl reload xinetd
+      Job for xinetd.service failed because the control process exited with error code. See "systemctl status xinetd.service" and "journalctl -xe" for details.
+      
+  - # journalctl -xe
+      -- Unit xinetd.service has begun reloading its configuration
+      Nov 18 03:43:21 dr1 kill[2782]: Usage:
+      Nov 18 03:43:21 dr1 kill[2782]: kill [options] <pid|name> [...]
+      Nov 18 03:43:21 dr1 kill[2782]: Options:
+      Nov 18 03:43:21 dr1 kill[2782]: -a, --all              do not restrict the name-to-pid conversion to processes
+      Nov 18 03:43:21 dr1 kill[2782]: with the same uid as the present process
+      Nov 18 03:43:21 dr1 kill[2782]: -s, --signal <sig>     send specified signal
+      Nov 18 03:43:21 dr1 kill[2782]: -q, --queue <sig>      use sigqueue(2) rather than kill(2)
+      Nov 18 03:43:21 dr1 kill[2782]: -p, --pid              print pids without signaling them
+      Nov 18 03:43:21 dr1 kill[2782]: -l, --list [=<signal>] list signal names, or convert one to a name
+      Nov 18 03:43:21 dr1 kill[2782]: -L, --table            list signal names and numbers
+      Nov 18 03:43:21 dr1 kill[2782]: -h, --help     display this help and exit
+      Nov 18 03:43:21 dr1 kill[2782]: -V, --version  output version information and exit
+      Nov 18 03:43:21 dr1 kill[2782]: For more details see kill(1).
+      Nov 18 03:43:21 dr1 systemd[1]: xinetd.service: control process exited, code=exited status=1
+      Nov 18 03:43:21 dr1 systemd[1]: Reload failed for Xinetd A Powerful Replacement For Inetd.
+      -- Subject: Unit xinetd.service has finished reloading its configuration
+      -- Defined-By: systemd
+      -- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+      --
+      -- Unit xinetd.service has finished reloading its configuration
+      --
+      -- The result is failed.
+      
+- # cat /var/log/messages 도 동일한 내용으로 발생
+
+- # 위 내용 토대로 확인한 바 $MAINPID 값을 받아오지 못하여 kill 명령을 수행하지 못함
+
+- # cat /etc/systemd/system/xinetd.service
+    [Service]
+    Type=forking
+    PIDFile=/var/run/xinetd.pid
+    EnvironmentFile=-/etc/sysconfig/xinetd
+    ExecStart=/usr/sbin/xinetd -stayalive -pidfile /var/run/xinetd.pid "$EXTRAOPTIONS"
+    ExecReload=/usr/bin/kill -HUP $MAINPID
+
+- # cat /var/log/messages
+  로그 확인 시 start 될때 PIDFile 경로로 지정된 파일을 읽어 $MAINPID 변수에 할당하여야 하나, 파일 생성보다 서비스가 먼저 기동되면서 문제가 발생
+  
+  
+2. 조치 방법 (2가지)
+  - 프로세스 실행 이후 다음 작업 전 sleep 을 추가
+    ExecStartPost=/bin/sleep 0.1
+    
+  - PIDFile을 제외 하고 GuessMainPID=[yes|no] 내용 추가
+    이 옵션는 Type=forking 가 설정되어 있고 PIDFile= 설정이 되어 있지 않은 경우에 작동한다. 
+    systemd 가 유닛이 정상적으로 시작되었는지 판단이 명확하지 않는 경우 사용된다. 만일 여러개의 데몬으로 구성된 유닛의 경우 잘못된 PID 추측이 발생할 수 있다. 
+    그로인해 오류 검출이나 자동 재시작 등의 작업이 불가능 할 수 있다. 이 옵션은 이러한 문제를 방지하는 기능을 한다. 
+
+
