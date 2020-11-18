@@ -40,7 +40,11 @@
     ExecReload=/usr/bin/kill -HUP $MAINPID
 
 - # cat /var/log/messages
-  로그 확인 시 start 될때 PIDFile 경로로 지정된 파일을 읽어 $MAINPID 변수에 할당하여야 하나, 파일 생성보다 서비스가 먼저 기동되면서 문제가 발생
+    Nov 18 03:32:49 dr1 systemd: Starting Xinetd A Powerful Replacement For Inetd...
+    Nov 18 03:32:49 dr1 systemd: Can't open PID file /var/run/xinetd.pid (yet?) after start: No such file or directory
+    Nov 18 03:32:49 dr1 systemd: Started Xinetd A Powerful Replacement For Inetd.
+
+- 위와 같이 로그 확인 시 start 될때 PIDFile 경로로 지정된 파일을 읽어 $MAINPID 변수에 할당하여야 하나, 파일 생성보다 서비스가 먼저 기동되면서 문제가 발생
   
   
 2. 조치 방법 (2가지)
