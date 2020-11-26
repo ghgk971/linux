@@ -1,0 +1,14 @@
+1. debuginfo 패키지 설치
+  - # subscription manager repos --enable=rhel-6-server-debug-rpms
+  - # yum install kernel-debuginfo-2.6.32-642.el6 crash
+  
+2. vmcore 분석
+  - # crash /usr/lib/debug/lib/modules/2.6.32-642.el6.x86_64/vmlinux [vmcore file]
+  
+  
+  
+참조 
+  - https://access.redhat.com/solutions/9907
+  - https://itknowledge.tistory.com/15
+  - https://m.cafe.daum.net/redhat/Cpm7/15?q=core&
+  - https://ssambback.tistory.com/category/Linux%20%EC%9D%B4%EC%95%BC%EA%B8%B0./vmcore%EB%B6%84%EC%84%9D%ED%95%98%EA%B8%B0
