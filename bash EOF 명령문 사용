@@ -13,3 +13,7 @@
     echo "\$V"
     test=\$(hostname)
   EOF
+
+
+참조 
+  - https://qastack.kr/programming/22697688/how-to-cat-eof-a-file-containing-code
