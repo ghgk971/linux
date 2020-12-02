@@ -1,0 +1,12 @@
+1. 패키지 설치 기반으로 파일 소유자 및 권한 변경
+  - # rpm --setperms -a
+  - # rpm --setugids -a
+  - -a 사용 시 백그라운드 진행
+  
+  - # for x in $(rpm -qa); do rpm --setperms $x; done
+  - # for x in $(rpm -qa); do rpm --setugids $x; done
+  
+  
+참조
+  - https://access.redhat.com/solutions/281923
+  - https://qastack.kr/unix/48845/how-to-revert-chown-command
