@@ -107,7 +107,7 @@ then
       virsh snapshot-delete $1 $i
     done
 
-  VOL_LIST=$(virsh domblklist --domain $1 | egrep -v 'Target|-------' | awk '{print $2}' | sed ':a;N;$!ba;s/\n/ /g')
+  VOL_LIST=$(virsh domblklist --domain $1 | egrep -v 'Target|-------|iso_image' | awk '{print $2}' | sed ':a;N;$!ba;s/\n/ /g')
   virsh undefine --domain $1
   rm -rf $(echo $VOL_LIST)
 
@@ -118,6 +118,7 @@ else
   virsh list --all
 
 fi
+
 
 
 
