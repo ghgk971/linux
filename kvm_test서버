@@ -69,14 +69,14 @@
 
 #!/bin/bash
 
-if [ $1 ] && [ $2 ] && [ $3 ] && [ $4 ] && [ $5 ]
+if [ $1 ] && [ $2 ] && [ $3 ] && [ $4 ] && [ $5 ] && [ $6 ]
 then
-  virt-builder $1 -o /var/lib/libvirt/images/$2.qcow2 --root-password password:rplinux --uninstall cloud-init --size $3G --format qcow2 \
-  --run-command 'sed -i s/^PasswordAuthentication.*/PasswordAuthentication\ yes/ /etc/ssh/sshd_config' \
-  --run-command 'sed -i s/^PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config' \
-  --run-command 'sed -i s/^SELINUX=enforcing/SELINUX=disabled/ /etc/selinux/config'
+  virt-builder $1 -o /var/lib/libvirt/images/$2.qcow2 --root-password password:rplinux --uninstall cloud-init --size $3G --format qcow2 --run-command \
+  'sed -i s/^PasswordAuthentication.*/PasswordAuthentication\ yes/ /etc/ssh/sshd_config' --run-command 'sed -i s/^PermitRootLogin.*/PermitRootLogin\ yes/ \
+  /etc/ssh/sshd_config' --run-command 'sed -i s/^SELINUX=enforcing/SELINUX=disabled/ /etc/selinux/config'
 
-  virt-install --import --name $2 --vcpus $4 --memory $5 --os-variant $1 --network network=$6,model=virtio --disk /var/lib/libvirt/images/$2.qcow2,format=qcow2,bus=virtio &
+  virt-install --import --name $2 --vcpus $4 --memory $5 --os-variant $1 --network network=$6,model=virtio --disk /var/lib/libvirt/images/$2.qcow2,format=qcow2,bus=virtio \
+  --disk device=cdrom &
 
 else
   echo -e "\e[1;31mcommand\e[m : ex) # create_vm [os_name] [qcow_image_name/.qcow2] [size/G] [vcpu] [memory] [network/ex)default]"
@@ -90,6 +90,7 @@ else
   done
 
 fi
+
 
 
 [삭제]
