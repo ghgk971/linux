@@ -1,3 +1,10 @@
 참조
   - https://access.redhat.com/articles/1360023
-  - https://lunatine.net/2014/10/29/thp-and-page-allocation-error/
+  - https://access.redhat.com/solutions/74573
+  - https://lunatine.net/2014/10/29/thp-and-page-allocation-error/ (왜?)
+ 
+ 
+ 
+ 
+메모리 관련 튜닝
+  - https://access.redhat.com/solutions/16995
