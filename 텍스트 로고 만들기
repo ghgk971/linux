@@ -1,0 +1,23 @@
+1. epel repo 설치
+  - # yum install epel-release
+  
+2. figlet 패키지 설치
+  - # yum install figlet
+  
+3. 텍스트 로고 생성
+  - # figlet score
+   ___  ___ ___  _ __ ___
+   / __|/ __/ _ \| '__/ _ \
+   \__ \ (_| (_) | | |  __/
+   |___/\___\___/|_|  \___|
+
+  - # figlet -b score
+      _|_|_|    _|_|_|    _|_|    _|  _|_|    _|_|
+    _|_|      _|        _|    _|  _|_|      _|_|_|_|
+        _|_|  _|        _|    _|  _|        _|
+    _|_|_|      _|_|_|    _|_|    _|          _|_|_|
+
+  
+
+참조
+http://nblog.syszone.co.kr/archives/9278
