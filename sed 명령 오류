@@ -1,0 +1,12 @@
+1. sed 명령 실행 시 오류 발생
+  - sed: -e expression #1, char 74: unknown option to `s'
+  - 발생 원인
+    변수에 /가 포함되어 있을 경우
+    
+  - 조치 방법
+    val=/root/test/aaa
+    sed -i "s/test/$val/g" /root/test    << 기존
+    sed -i "s@test@${val}@g" /root/test  << 변경
+    
+    / -> @로 변경 
+    변수는 ${변수명} 으로 변경
