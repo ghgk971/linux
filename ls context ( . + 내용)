@@ -1,0 +1,34 @@
+1. ls -al 명령어 확인 시 permission 외 . 또는 + 출력시
+  - . = context
+  - + = ACL
+  
+2. ls 코드 내용
+    if (! any_has_acl)
+    modebuf[10] = '\0';
+  else if (f->acl_type == ACL_T_LSM_CONTEXT_ONLY)
+    modebuf[10] = '.';
+  else if (f->acl_type == ACL_T_YES)
+    modebuf[10] = '+';
+
+3. 리눅스 매뉴얼
+  - . indicates that the SELinux security context is set for the file.
+  - https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/file-permissions-rhel8_configuring-basic-system-settings
+  
+4. 테스트
+  - # ls -al
+    -rw-r--r--   1 root root       9261 Dec 17 05:45 test
+    
+  - # setfacl -m u:root:rw- test
+    -rw-rw-r--+  1 root root       9261 Dec 17 05:45 test
+
+  - [root@test1 ~]# ls -lZ
+  -rw-------. root root system_u:object_r:admin_home_t:s0 anaconda-ks.cfg
+  -rw-r--r--  root root ?                                edb-10.7.tar.gz
+  drwxr-xr-x  root root ?                                elrepo
+  -rw-------. root root system_u:object_r:admin_home_t:s0 original-ks.cfg
+
+
+
+
+참조
+https://access.redhat.com/solutions/46516
