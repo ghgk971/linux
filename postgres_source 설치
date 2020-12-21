@@ -1,1 +1,65 @@
+1. postgres 다운로드
+  - https://www.postgresql.org/ftp/source/v10.7/
+  
+2. 계정 생성
+  - # useradd pg_user
+
+3. 계정 로그인 및 압축 해제
+  - # su - pg_user
+  - $ tar xvfz postgresql-10.7.tar.gz
+  - $ cd postgresql-10.7
+  
+4. postgresql 설치
+  - $ ./configure --prefix=/postgres/pgsql    # prefix는 설치 디렉토리 지정
+  
+  - 아래 오류 발생 시 조치 (컴파일러가 없어 발생하는 오류)
+    configure: error: in `/home/pgspsp/postgresql-10.7':
+    configure: error: no acceptable C compiler found in $PATH
+    See `config.log' for more details
+    
+    # yum -y install gcc
+    
+  - 아래 오류 발생 시 조치
+    configure: error: readline library not found
+    If you have readline already installed, see config.log for details on the
+    failure.  It is possible the compiler isn't looking in the proper directory.
+    Use --without-readline to disable readline support.
+    
+    # yum -y install readline-devel
+    
+  - 아래 오류 발생 시 조치
+    configure: error: zlib library not found
+    If you have zlib already installed, see config.log for details on the
+    failure.  It is possible the compiler isn't looking in the proper directory.
+    Use --without-zlib to disable zlib support.
+
+    # yum install zlib zlib-devel
+  
+  - $ make
+  - $ make install
+
+5. DB 설치
+  - $ initdb -D /data/SPSP --waldir=/pg_wal/SPSP --encoding='utf8' --locale='C' --username=[pg_user]
+  
+6. postgres 설정 변경
+  - $ vi /data/SPSP/postgresql.conf
+  
+7. posgresql 실행
+  - $ pg_ctl start
+ 
+8. DB 계정 생성 및 설정 변경
+  - $ psql -d template1 -c "create user [DB_USER] with superuser createdb createrole inherit login password '[DB_PW]';"
+  - $ psql -d template1 -c "alter user [DB_USER] with superuser createdb createrole inherit login password '[DB_PW]';"
+
+9. tablespce 생성
+  - $ psql -c "create tablespace tbs01 owner [DB_USER] location '/data/[DB_NAME]/TS01';"
+  - $ dropdb postgres
+  - psql -c "drop database postgres;" (DB 내에서 할 경우)
+  - $ createdb -p [DB_PORT] -D tbs01 [DB_NAME] -O [DB_USER]
+
+
+  
+
+
+참조
 https://brunch.co.kr/@daniellim/37
