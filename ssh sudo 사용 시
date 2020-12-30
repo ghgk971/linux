@@ -9,3 +9,11 @@
       test@100.100.100.61's password:
       [sudo] password for test: (sudo 사용을 위한 해당 계정 password)
       test1
+
+
+ 
+
+참조
+https://stackoverflow.com/questions/21659637/how-to-fix-sudo-no-tty-present-and-no-askpass-program-specified-error
+https://qastack.kr/ubuntu/281742/sudo-no-tty-present-and-no-askpass-program-specified
+https://askubuntu.com/questions/281742/sudo-no-tty-present-and-no-askpass-program-specified
