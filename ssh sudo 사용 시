@@ -1,0 +1,11 @@
+1. ssh 명령어 sudo 사용 시 아래 오류 출력
+  - # ssh test@100.100.100.61 "sudo hostname"
+      test@100.100.100.61's password:
+      sudo: no tty present and no askpass program specified
+
+2. 조치 방법
+  - ssh -t 옵션 사용
+  - # ssh -t test@100.100.100.61 "sudo hostname"
+      test@100.100.100.61's password:
+      [sudo] password for test: (sudo 사용을 위한 해당 계정 password)
+      test1
