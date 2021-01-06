@@ -1,6 +1,8 @@
 1. tgtd 재시작 없이 설정 추가
-  -  tgtadm --lld iscsi --mode target --op bind --tid 1 --initiator-address [IP]
-  
+  - # tgtadm --lld iscsi --mode target --op bind --tid 1 --initiator-address [IP]
+
+2. tid 및 설정 확인
+  - # tgt-admin --show
   
 참조 
   - https://m.blog.naver.com/PostView.nhn?blogId=zltmwnffldpt&logNo=221030824954&proxyReferer=https:%2F%2Fwww.google.com%2F (항목 3)
