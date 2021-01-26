@@ -1,0 +1,40 @@
+1. rsyslog 필터 설정 방법
+  - RHEL7 이상 stop 사용 하면 해당 내용 제외
+  - 이전 버전인 경우 ~ 사용하여 제외
+  
+
+[/etc/rsyslog.conf 적용 설정] 
+ip 포함
+
+if $fromhost-ip=='192.168.122.x' then {      (한개의 호스트)
+
+if $fromhost-ip=='192.168.122.x' or $fromhost-ip=='192.168.122.y' then {    (여러개의 호스트)
+  if $msg contains "esx" and $syslogseverity <= '4' then
+    action(type="omfile" file="/var/log/remote.log")
+  else
+    stop
+} else{
+       *.info;mail.none;authpriv.none;cron.none                 /var/log/messages
+} 
+
+
+
+ip 제외
+
+if $msg contains "esx" then {
+  if $syslogseverity <= '4' then
+    action(type="omfile" file="/var/log/remote.log")
+  else
+    stop
+} else{
+       *.info;mail.none;authpriv.none;cron.none                /var/log/messages
+} 
+
+
+
+ 
+ 
+
+
+
+ 
