@@ -1,0 +1,134 @@
+[백업 방법] 
+
+1. rear 설정  (아래 설정은 예시 이며, 기존 사용하시는 설정이 있으시다면 해당 설정으로 적용 하시기 바랍니다.)
+
+  - # vi /etc/rear/local.conf
+
+Time=`date +"%Y%m%d"`
+
+NETFS_KEEP_OLD_BACKUP_COPY=yes
+
+OUTPUT=ISO
+OUTPUT_URL=file:///backup/iso
+
+BACKUP=NETFS
+BACKUP_URL=file:///backup/archive
+
+BACKUP_PROG_ARCHIVE=${Time}_backup
+BACKUP_PROG_EXCLUDE=('/tmp/*' '/var/crash/*' '/dev/shm/*' '/run/*' '/sys/fs/cgroup/*' '/backup/*' '/BACKUP_GPI/*' '/AppHome/*' '/oracle/*' '/oraLog/*' '/oragrid/*' '/run/user/42/*' /mnt/oracle/tfa/*' '/run/user/0/*')    # 제외할 파일
+
+ 
+
+2. 백업 실행
+
+  - # rear -v mkrescue
+
+ 
+
+3. 파일 확인
+
+  - # ls -al /backup/iso/localhost/
+    total 89080
+    drwxr-x--- 2 root root       87 Jan 27 03:02 .
+    drwx------ 3 root root       23 Jan 27 03:02 ..
+    -rw------- 1 root root      202 Jan 27 03:02 README
+    -rw------- 1 root root 90740736 Jan 27 03:02 rear-localhost.iso
+    -rw------- 1 root root   464227 Jan 27 03:02 rear-localhost.log
+    -rw------- 1 root root      278 Jan 27 03:02 VERSION 
+
+ 
+
+  - # ls -al /backup/archive/localhost/
+
+    -rw------- 1 root root   1981748 Jan 27 03:03 20210127_backup.log
+    -rw------- 1 root root 405665199 Jan 27 03:03 20210127_backup.tar.gz 
+
+ 
+
+4. cron 설정
+
+  - # vi /etc/cron.d/rear
+
+    매일 1시 30분에 백업되도록 설정 되있으며, 원치 않으시다면 해당 내용을 주석처리 해주시기 바랍니다.
+
+    #30 1 * * * root /usr/sbin/rear checklayout || /usr/sbin/rear mkrescue
+
+ 
+
+ 
+
+[장애 발생 예]
+
+  - 테스트 상 vm disk 삭제 및 생성
+
+
+
+ 
+
+ 
+
+[복원 방법]
+
+1. iso 파일 복사
+
+  - ex) # scp /backup/iso/localhost/rear-localhost.iso 192.168.122.1:/root/
+
+ 
+
+2. iso 파일로 부팅 매체 생성
+
+  - ex) dvd, usb ..
+
+ 
+
+3. 이미지 부팅
+
+  - Recover [hostname] 선택
+
+
+
+ 
+
+4. 로그인
+
+  - [hostname] login : root 입력
+
+ 
+
+5. 복구
+
+  - ex) # mkdir /backup
+
+  - ex) # mount /dev/vdb /backup   (백업 디렉토리 마운트)
+
+  - # rear -v recover
+
+  - # yes 입력
+
+  - # reboot    (완료 후 재부팅)
+
+
+
+ 
+
+6. 확인
+
+  - # hostname
+
+  - # uname -a
+
+  - # multipath -ll
+
+  - # ip a
+
+  - 기타
+
+ 
+
+ 
+
+확인 부탁 드립니다.
+
+ 
+
+감사합니다.
