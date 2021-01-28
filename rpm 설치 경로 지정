@@ -1,0 +1,12 @@
+1. rpm 설치 시 경로 지정
+
+yum localinstall * --installroot=/usr/local/ --disabledrepo=rhel-7-server-rpms
+rpm ivh --prefix={path}
+
+모든 RPM 패키지가 설치 경로를 바꿀 수 있는 게 아니고 Relocatable RPM 옵션으로 빌드된 패키지만 가능합니다. 또한 Fedora RPM 패키징 가이드라인에서는 Relocatable RPM 패키지를 만드는 것을 
+권장하지 않습니다. 설치 경로 변경이 안 통하는 패키지가 더 많을 거라는 이야기죠. 개인적으로는 /usr/local 디렉터리 아래에는 컴파일해서 설치한 바이너리만 넣고, 배포판 패키지로 설치하는 
+바이너리는 /usr 아래에 두는 것을 편한 유지 관리를 위해 추천합니다.
+
+
+
+https://kldp.org/node/158168
