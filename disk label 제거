@@ -1,0 +1,8 @@
+1. disk label 제거
+  - # dd if = / dev / zero of = / dev / sdX bs = 1M count = 1 oflag = direct
+  
+  
+  
+
+참조
+https://access.redhat.com/solutions/626963
