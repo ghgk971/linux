@@ -125,10 +125,6 @@ BACKUP_PROG_EXCLUDE=('/tmp/*' '/var/crash/*' '/dev/shm/*' '/run/*' '/sys/fs/cgro
 
  
 
- 
-
-확인 부탁 드립니다.
-
- 
-
-감사합니다.
+참조
+  - https://access.redhat.com/solutions/2115051
+  - https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/system_administrators_guide/index#ch-Relax-and-Recover_ReaR
