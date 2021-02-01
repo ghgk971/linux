@@ -75,3 +75,11 @@ test2 계정으로 deny 6회 후 접속
   Permission denied, please try again.
   test4@222.222.222.189's password: 
  
+
+
+
+
+혹시 모르니 참조
+아래 내용은 위와 다름
+https://access.redhat.com/solutions/2816
+https://access.redhat.com/solutions/4303
