@@ -1,0 +1,77 @@
+
+/etc/pam.d/ 경로의 "password-auth-ac", "system-auth-ac" 파일에 아래의 예와 같이 설정 합니다.
+
+ * 아래의 작업 수행 시 기존 파일들은 backup 후
+
+ 
+
+  auth        [success=ignore default=1] pam_succeed_if.so user in test1:test2
+  auth        required      pam_tally2.so
+
+  auth        [success=ignore default=1] pam_succeed_if.so user notin test1:test2
+  auth        required      pam_tally2.so deny=4 unlock_time=20 
+ 
+
+ 
+ 위 내용은 test1과 test2 계정이 맞는 경우 허용, test1:test2가 아닌경우 lock 설정
+ 인증 부분에 required가 아닌 success가 설정되어야 함
+
+
+
+
+test2 계정으로 deny 6회 후 접속
+   # ssh test2@222.222.222.189
+   test2@222.222.222.189's password: (1회)
+   Permission denied, please try again.
+   test2@222.222.222.189's password: (2회)
+   Permission denied, please try again.
+   test2@222.222.222.189's password: (3회)
+   Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).
+   # ssh test2@222.222.222.189
+   test2@222.222.222.189's password: (4회)
+   Permission denied, please try again.
+   test2@222.222.222.189's password: (5회)
+   Permission denied, please try again.
+   test2@222.222.222.189's password: (6회)
+   Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).
+ 
+   # pam_tally2 -u test2
+  Login           Failures Latest failure     From
+  test2               6    08/05/20 17:50:17  222.222.222.1 
+  
+ ------------ 잠김 예외 계정 접속 정상 확인------------ 
+  # ssh test2@222.222.222.189
+  test2@222.222.222.189's password:
+  Last failed login: Wed Aug  5 17:50:33 KST 2020 from 222.222.222.1 on ssh:notty
+  There were 6 failed login attempts since the last successful login.
+  Last login: Wed Aug  5 17:50:12 2020 from 222.222.222.1
+  [test2@localhost ~]$ 
+  --------------------------------------------- 
+ 
+------------- 잠김 설정 계정 접속 실패 확인 ------------- 
+  # ssh test4@222.222.222.189
+  test4@222.222.222.189's password: (1회)
+  Permission denied, please try again.
+  test4@222.222.222.189's password: (2회)
+  Permission denied, please try again.
+  test4@222.222.222.189's password: (3회)
+  Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).
+  [root@sihyun33kim log]# ssh test4@222.222.222.189
+  test4@222.222.222.189's password: (4회)
+  Permission denied, please try again.
+  test4@222.222.222.189's password: (5회)
+  Permission denied, please try again.
+  test4@222.222.222.189's password: (6회)
+ Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).
+ 
+  # pam_tally2 -u test4
+  Login           Failures Latest failure     From
+  test4               6    08/05/20 17:55:01  222.222.222.1 
+
+ 
+
+ # ssh test4@222.222.222.189
+  test4@222.222.222.189's password:
+  Permission denied, please try again.
+  test4@222.222.222.189's password: 
+ 
