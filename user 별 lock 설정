@@ -1,3 +1,22 @@
+/etc/pam.d/password-auth-ac / system-auth-ac
+
+auth        required      pam_env.so
+auth        [success=1 default=ignore] pam_succeed_if.so user in test1:test3
+auth        required      pam_tally2.so onerr=fail deny=3 unlock_time=100
+#auth        [success=ignore default=1] pam_succeed_if.so user in test1:test3
+#auth        required      pam_tally2.so onerr=fail deny=3 unlock_time=100
+
+
+[success=1 default=ignore] test1과 test3 계정은 fail count를 하지 않고, 나머지 유저들은 잠김
+
+[success=ignore default=1] test1 과 test3 계정이 fail count 대상
+
+그러므로 아래처럼 두개 등록하지 않더라도 하나만 해도 동작 함
+
+-------------------------------------------------------------------------
+
+
+
 
 /etc/pam.d/ 경로의 "password-auth-ac", "system-auth-ac" 파일에 아래의 예와 같이 설정 합니다.
 
