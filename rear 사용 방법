@@ -21,7 +21,9 @@ BACKUP_PROG_INCLUDE=('/*')    # 백업할 파일 (해당 값은 전체 백업)
 
 2. 백업 실행
 
-  - # rear -v mkrescue
+  - # rear -v mkrescue      (rescue file only)
+  - # rear -v mkbackuponly  (backup file only)
+  - # rear -v mkbackup      (둘다)
 
  
 
