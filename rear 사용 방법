@@ -16,7 +16,7 @@ BACKUP_URL=file:///backup/archive
 
 BACKUP_PROG_ARCHIVE=${Time}_backup
 BACKUP_PROG_EXCLUDE=('/tmp/*' '/var/crash/*' '/dev/shm/*' '/run/*' '/sys/fs/cgroup/*' '/backup/*' '/BACKUP_GPI/*' '/AppHome/*' '/oracle/*' '/oraLog/*' '/oragrid/*' '/run/user/42/*' /mnt/oracle/tfa/*' '/run/user/0/*')    # 제외할 파일
-
+BACKUP_PROG_INCLUDE=('/*')    # 백업할 파일 (해당 값은 전체 백업)
  
 
 2. 백업 실행
