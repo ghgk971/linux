@@ -1,0 +1,25 @@
+1. read_head 값 확인
+  - # blockdev --report   (RA 값)
+  
+2. read_head 값 변경
+  - # blockdev --setra 4096 /dev/sdc
+  
+3. lvchange를 이용하여 변경
+  - # lvchange -r 4096 /dev/mapper/vg_data-lv_data
+  
+4. udev rules 추가하여 변경
+  - # vi /etc/udev/rules.d/99-readhead.rules
+    ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_VG_NAME}=="vg_data", ENV{DM_LV_NAME}=="lv_archive", RUN+="/sbin/blockdev --setra 256 /dev/mapper/vg_data-lv_archive"
+    ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_VG_NAME}=="vg_data", ENV{DM_LV_NAME}=="lv_wal", RUN+="/sbin/blockdev --setra 256 /dev/mapper/vg_data-lv_wal"
+    ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_VG_NAME}=="vg_data", ENV{DM_LV_NAME}=="lv_TS01", RUN+="/sbin/blockdev --setra 256 /dev/mapper/vg_data-lv_TS01"
+    ACTION=="add|change", KERNEL=="dm-*", SUBSYSTEM=="block", ENV{DM_VG_NAME}=="vg_data", ENV{DM_LV_NAME}=="lv_data", RUN+="/sbin/blockdev --setra 256 /dev/mapper/vg_data-lv_data"
+
+
+
+
+참조
+  - https://powerbox.tistory.com/355
+  - https://serverfault.com/questions/418352/readahead-settings-for-lvm-device-mapper-software-raid-and-block-devices-wha
+  - https://fatalfailure.wordpress.com/2017/05/13/where-to-set-readahead-lvm-raid-devices-device-mapper-block-devices/
+  - https://access.redhat.com/solutions/1212773
+  - https://access.redhat.com/solutions/1241093
