@@ -1,0 +1,4 @@
+1. 패키지 변경 로그 확인
+  - # rpm -q --changelog kernel-3.10.0-1160.15.2.el7.x86_64 | less
+  
+  
