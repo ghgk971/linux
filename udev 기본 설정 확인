@@ -1,0 +1,7 @@
+1. udev 기본 설정 관련된 로그 확인
+  - # journalctl -u systemd-udevd
+  
+2. 기본 설정 파일 (RHEL 7)
+  - /usr/lib/udev/rules.d/60-persistent-storage.rules
+  
+  
