@@ -15,6 +15,10 @@ auth        required      pam_tally2.so onerr=fail deny=3 unlock_time=100
 
 -------------------------------------------------------------------------
 
+success 및 default 는 아래 조건을 점프할 갯수 지정
+  - 참고 : https://serverfault.com/questions/134471/success-n-control-syntax-in-pam-conf-pam-d-files
+
+
 
 
 
