@@ -39,3 +39,6 @@
     - # awk "NR >=20" test.txt
     
     
+    
+ 참조
+   - https://jhnyang.tistory.com/137
