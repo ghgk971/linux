@@ -1,6 +1,5 @@
 1. ssh keygen 접속
   - # vi /etc/ssh/sshd_config
-    Permit
     
 2. root 로그인 차단
   - # vi /etc/ssh/sshd_config
