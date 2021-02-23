@@ -1,0 +1,18 @@
+1. 시리얼 로그 설정 후 접속 하여 vmcore 생성
+  - # echo c > /proc/sysrq-trigger
+  
+2. 로그 확인
+[  508.276209] CPU: 2 PID: 29486 Comm: bash Kdump: loaded Tainted: G           OE  ------------ T 3.10.0-1062.el7.x86_64 #1
+  
+[  508.193435] Modules linked in: mpt2sas raid_class scsi_transport_sas mptctl mptbase bonding dell_rbu sunrpc dell_smbios iTCO_wdt dell_wmi_descriptor iTCO_vendor_support skx_edac intel_powerclamp coretemp intel_rapl iosf_mbi dcdbas kvm_intel kvm irqbypass crc32_pclmul ghash_clmulni_intel aesni_intel lrw gf128mul glue_helper ablk_helper cryptd pcspkr dm_service_time joydev sg ipmi_ssif mei_me lpc_ich i2c_i801 mei wmi ipmi_si ipmi_devintf ipmi_msghandler acpi_pad acpi_power_meter dm_multipath binfmt_misc ip_tables ext4 mbcache jbd2 sd_mod crc_t10dif crct10dif_generic crct10dif_pclmul crct10dif_common crc32c_intel qla2xxx(T) mgag200 i40e(OE) drm_kms_helper megaraid_sas syscopyarea sysfillrect sysimgblt fb_sys_fops ttm drm ahci libahci nvme_fc nvme_fabrics drm_panel_orientation_quirks nvme_core igb(OE) libata scsi_transport_fc ptp pps_core scsi_tgt dca i2c_algo_bit nfit
+  
+[Tainted message]
+ G : the kernel is tainted (for a reason indicated elsewhere), but all module code is licensed under the GNU General Public License (GPL) or a compatible license.
+O : Out-of-tree module has been loaded.
+E : Unsigned module has been loaded.
+T : Red Hat extension, Technology Preview code was loaded; cf. Technology Preview features support scope description. Refer to "TECH PREVIEW:" kernel log entry for details.
+
+3. crashkernel 고정 설정
+
+4. initramfs 재생성
+
