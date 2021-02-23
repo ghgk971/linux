@@ -1,0 +1,59 @@
+1. dell
+sirial log
+
+  - Change grub.conf and connect to IDrac.
+
+
+◾# cat /proc/cmdline (Matching check after rollback)
+  
+◾# cp /etc/default/grub /root/
+  
+◾# vi /etc/default/grub
+[AS-IS]
+ GRUB_TIMEOUT=5
+ GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+ GRUB_DEFAULT=saved
+ GRUB_DISABLE_SUBMENU=true
+ GRUB_TERMINAL_OUTPUT="console"
+ GRUB_CMDLINE_LINUX="transparent_hugepage=never mce=off intel_idle.max_cstate=0 processor.max_cstate=1 ipv6.disable=1 elevator=noop spectre_v2=off nopti crashkernel=auto rd.lvm.lv=rootvg/root_lv rd.lvm.lv=rootvg/swap_lv rd.lvm.lv=rootvg/usr_lv rhgb quiet intel_pstate=disable nospec_store_bypass_disable l1tf=off mds=off"
+ GRUB_DISABLE_RECOVERY="true" 
+  
+[TO-BE]
+ GRUB_TIMEOUT=5
+ GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+ GRUB_DEFAULT=saved
+ GRUB_DISABLE_SUBMENU=true
+ *#*GRUB_TERMINAL_OUTPUT="console"
+GRUB_TERMINAL=serial
+GRUB_SERIAL_COMMAND="serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1"
+ GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200n8 transparent_hugepage=never mce=off intel_idle.max_cstate=0 processor.max_cstate=1 ipv6.disable=1 elevator=noop spectre_v2=off nopti crashkernel=auto rd.lvm.lv=rootvg/root_lv rd.lvm.lv=rootvg/swap_lv rd.lvm.lv=rootvg/usr_lv rhgb quiet intel_pstate=disable nospec_store_bypass_disable l1tf=off mds=off"
+ GRUB_DISABLE_RECOVERY="true" 
+ 
+◾# grub2-mkconfig -o /boot/grub2/grub.cfg
+  
+◾# reboot
+  
+[Serial port connection through terminal (ex putty)]
+- Idrac IP connect
+- # console com2
+◾# connect com2 (If the above order does not work)
+◾root login
+- # echo c > /proc/sysrq-trigger  (Log collection)
+  
+ Reference
+◾https://access.redhat.com/articles/3166931#config7
+◾https://access.redhat.com/solutions/234803|
+
+ 
+
+
+[roll back] ◾# cp /root/grub /etc/default/grub
+  
+◾# cat /etc/default/grub (check)
+  
+◾# grub2-mkconfig -o /boot/grub2/grub.cfg
+  
+◾# reboot
+  
+◾# cat /proc/cmdline (check)
+ 
