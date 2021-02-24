@@ -1,7 +1,15 @@
 1. echo 글자 색깔 변경
   - # echo -e "\033[31;1m"글자"\033[m"
   
-
+2. 내용 설명
+  - \033[ : 색상 시작
+  - X ; N m : x = 배경색, y = 글자색
+  - \033[m : 생상 종료
+  
+3. 색상 코드 확인 방법
+  - # man echo 사용 방법
+  - # man console_codes
+  
 
 참조
 https://infrajp.tistory.com/13
