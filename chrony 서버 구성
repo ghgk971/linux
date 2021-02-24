@@ -14,7 +14,9 @@
 4. 동기화 확인
   - # chronyc sources
   
-  
+
+동기화 할 수 없다는 메세지가 발생할 경우
+server 127.127.1.0 
 
 참조
 https://access.redhat.com/solutions/3071471
