@@ -1,0 +1,7 @@
+1. echo 글자 색깔 변경
+  - # echo -e "\033[31;1m"글자"\033[m"
+  
+
+
+참조
+https://noota.tistory.com/entry/UbuntuLinux-echo-%EB%AA%85%EB%A0%B9%EC%96%B4%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%B6%9C%EB%A0%A5-%EB%82%B4%EC%9A%A9-%EC%83%89%EC%83%81-%EB%B3%80%EA%B2%BD
