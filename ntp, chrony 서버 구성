@@ -1,3 +1,5 @@
+ntp서버구성은 원노트 참조
+
 1. chrony 패키지 설치
   - # yum install chrony
   
@@ -21,6 +23,11 @@ server 127.127.1.0
 참조
 https://access.redhat.com/solutions/3071471
 https://joungkyun.gitbook.io/annyung-3-user-guide/chapter6/chapter6-chrony
+
+설정 매뉴얼
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-configuring_ntp_using_the_chrony_suite
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-configuring_ntp_using_ntpd
+
 
 chrony 클라이언트 구성 참조
 https://atl.kr/dokuwiki/doku.php/chrony_%EC%84%A4%EC%A0%95
