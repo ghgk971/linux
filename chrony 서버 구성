@@ -20,6 +20,7 @@ server 127.127.1.0
 
 참조
 https://access.redhat.com/solutions/3071471
+https://joungkyun.gitbook.io/annyung-3-user-guide/chapter6/chapter6-chrony
 
 chrony 클라이언트 구성 참조
 https://atl.kr/dokuwiki/doku.php/chrony_%EC%84%A4%EC%A0%95
