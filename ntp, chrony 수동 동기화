@@ -1,0 +1,7 @@
+1. ntp 수동 동기화
+  - # systemctl stop ntpd  (ntpd가 실행 중일 경우 ntpdate가 실행되지 않음)
+	- # ntpdate [NTP server]
+	- # hwclock -w
+  
+  
+2. chrony 수동 동기화
