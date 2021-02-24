@@ -4,9 +4,9 @@
 2. chrony 설정
   - # vi /etc/chrony.conf
    모든 server 주석 및 아래 내용 작성
-   server 127.127.1.0
-    allow 127.0.0.0/8
-    local stratum 10
+   server 127.127.1.0   (작성하지 않아도 됨 - 아래 내용 참조)
+   allow 127.0.0.0/8
+   local stratum 10
   - 클라이언트 추가 할 경우 allow에 해당 IP 대역 추가    
 3. chronyd 재시작
   - # systemctl restart chronyd
