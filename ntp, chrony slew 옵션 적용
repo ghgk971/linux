@@ -1,0 +1,16 @@
+1. slew 옵션 적용 방법
+  - ntpd
+   # vi /etc/sysconfig/ntpd
+   OPTIONS="-g" -> OPTIONS="-g -x" 변경
+   
+  - chronyd
+   # vi /etc/chrony.conf
+   leapsecmode slew 추가
+   
+- https://atl.kr/dokuwiki/doku.php/slew_mode_%EC%8B%9C%EA%B0%84%EB%8F%99%EA%B8%B0%ED%99%94
+
+
+참조
+https://access.redhat.com/articles/15145
+https://access.redhat.com/solutions/401823
+https://access.redhat.com/solutions/2267201
