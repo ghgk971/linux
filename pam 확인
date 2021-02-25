@@ -1,0 +1,13 @@
+1. 명령어가 사용하는 pam 정보 확인
+  - # cat /etc/pam.d/[command]
+  
+2. 어떠한 pam 파일이 확인 되는지 확인
+
+3. 예를 들어 passwd 명령어 사용 시 system-auth 만 설적이 적용됨
+  - # cat /etc/pam.d/passwd
+#%PAM-1.0
+auth       include      system-auth
+account    include      system-auth
+password   substack     system-auth
+-password   optional    pam_gnome_keyring.so use_authtok
+password   substack     postlogin
