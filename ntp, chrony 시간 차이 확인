@@ -1,15 +1,23 @@
-1. ntpd 시간 차이 확인
+1. ntpd 시간 차이 확인 (208초)
   - # ntpdate -d [ntp server] | tail -1
-    25 Feb 11:10:56 ntpdate[23648]: step time server 100.100.100.146 offset 658.340537 sec
+25 Feb 13:31:26 ntpdate[6858]: step time server 100.100.100.146 offset 208.069655 sec
+
   - 현재 NTP서버와 658초 차이
-  
-  - # ntpstat
   - # ntpq -p
+remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
+ test1           LOCAL(0)         6 u   27   64    1    0.299  208069. 208069.
+
   - offset 값이 시간 차 이지만 재 확인 하는 시간이 오래 걸리는것으로 보여짐
   
   
-2. chronyd 시간 차이 확인
-  - # 
+2. chronyd 시간 차이 확인 (219초)
+  - # chronyc sources
+210 Number of sources = 1
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^? test1                        10   6   377    25  -219.0s[-219.0s] +/-  163us
+
   
   
   
@@ -21,3 +29,4 @@ ntpdate 사용
 
 기초 내용 좀 괜찮아 보임
 https://mapoo.net/os/oslinux/ntp-%EC%83%81%ED%83%9C-%ED%99%95%EC%9D%B8/
+http://www.chlux.co.kr/bbs/board.php?bo_table=board02&wr_id=62&sca=OS
