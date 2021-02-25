@@ -1,5 +1,6 @@
 1. src rpm 설치
   - # useradd mockbuild
+  - # groupadd mock
   - # rpm -ivh [rpm_file]
   - # /root/rpmbuild 내 파일 확인
   
