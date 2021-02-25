@@ -1,0 +1,1 @@
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="56:6f:e7:7a:00:32", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="ens256", NAME="ens192"
