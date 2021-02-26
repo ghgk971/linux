@@ -1,0 +1,6 @@
+1. 버그 및 패치 관련 업데이트된 패키지 모두 업데이트
+  - # yum update --advisory=RHBA-2019:2044
+  
+  
+참조
+https://access.redhat.com/solutions/3819902
