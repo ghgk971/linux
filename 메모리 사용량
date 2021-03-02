@@ -1,4 +1,6 @@
 https://access.redhat.com/sites/default/files/attachments/memory_usage.pdf
+
+MemAvailable
 https://unix.stackexchange.com/questions/261247/how-can-i-get-the-amount-of-available-memory-portably-across-distributions
 
 /proc/meminfo정보
