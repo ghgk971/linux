@@ -3,6 +3,35 @@ https://access.redhat.com/sites/default/files/attachments/memory_usage.pdf
 MemAvailable
 https://unix.stackexchange.com/questions/261247/how-can-i-get-the-amount-of-available-memory-portably-across-distributions
 
+
+
+#### 공식 ####
+
+LOW_WATERMARK=$(awk '$1 == "low" {LOW_WATERMARK += $2} END {print LOW_WATERMARK * 4096}' /proc/zoneinfo)
+
+MEMINFO=$(</proc/meminfo)
+
+MEMINFO_MEMFREE=$(echo "${MEMINFO}" | awk '$1 == "MemFree:" {print $2 * 1024}')
+MEMINFO_FILE=$(echo "${MEMINFO}" | awk '{MEMINFO[$1]=$2} END {print (MEMINFO["Active(file):"] + MEMINFO["Inactive(file):"]) * 1024}')
+MEMINFO_SRECLAIMABLE=$(echo "${MEMINFO}" | awk '$1 == "SReclaimable:" {print $2 * 1024}')
+
+MEMINFO_MEMAVAILABLE=$((
+  MEMINFO_MEMFREE - LOW_WATERMARK
+  + MEMINFO_FILE - ((MEMINFO_FILE/2) < LOW_WATERMARK ? (MEMINFO_FILE/2) : LOW_WATERMARK)
+  + MEMINFO_SRECLAIMABLE - ((MEMINFO_SRECLAIMABLE/2) < LOW_WATERMARK ? (MEMINFO_SRECLAIMABLE/2) : LOW_WATERMARK)
+))
+
+if [[ "${MEMINFO_MEMAVAILABLE}" -le 0 ]]
+then
+  MEMINFO_MEMAVAILABLE=0
+fi
+
+###############
+
+
+
+
+
 /proc/meminfo정보
   - https://access.redhat.com/solutions/406773
   - https://ssambback.tistory.com/entry/Linux-Memory%EC%9D%98-%EC%83%81%ED%83%9C%EB%A5%BC-%EB%B6%84%EC%84%9D%ED%95%98%EB%9D%BC
