@@ -1,0 +1,6 @@
+/etc/xdg/autostart/gnome-initial-setup-first-login.desktop
+  - X-GNOME-Autostart-enabled=false
+
+
+
+https://access.redhat.com/solutions/704913
