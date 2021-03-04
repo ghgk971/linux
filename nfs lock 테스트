@@ -14,3 +14,7 @@ do
     } {test_fd}<"$test_file"
     rm -f "$test_file"
 done
+
+
+
+./[script] [directory]
