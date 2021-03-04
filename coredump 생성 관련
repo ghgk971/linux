@@ -1,0 +1,14 @@
+응용 프로그램이 충돌하거나 세분화 오류가 발생한 경우 코어 파일 덤프를 활성화하는 방법
+  - https://access.redhat.com/solutions/4896
+  
+RHEL에서 데몬 프로세스 (서비스)에 대한 코어 덤프를 활성화하는 방법은 무엇입니까?
+  - https://access.redhat.com/solutions/649193
+  
+Red Hat Enterprise Linux 6/7/8에서 제공되는 충돌 프로그램의 코어 덤프 파일을 수집하는 방법은 무엇입니까?
+  - https://access.redhat.com/solutions/56021
+  
+RHEL7에서 abrtd 서비스없이 애플리케이션 코어 덤프를 수집하는 방법은 무엇입니까?
+  - https://access.redhat.com/solutions/2139111
+
+RHEL에서 Java 프로세스를 중단하지 않고 코어 덤프를 생성하는 방법은 무엇입니까?
+  - https://access.redhat.com/solutions/277393
