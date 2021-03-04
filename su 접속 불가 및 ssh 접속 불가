@@ -1,0 +1,10 @@
+1. su 및 ssh 접속 시 아래와 같은 오류 발생
+  - su: failed to execute /bin/bash: Resource temporarily unavailable
+  - process 제한 값을 넘어섰기 때문에 발생
+  
+2. 해결 방법
+  - /etc/security/limits.d/20-nproc.conf 또는 /etc/security/limits.conf 에 설정된 nproc 값 변경
+  
+3. 참조
+  - https://access.redhat.com/solutions/30316
+  - https://access.redhat.com/solutions/22158
