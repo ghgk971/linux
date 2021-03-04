@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+date=`date +%Y%m%d`
+day=`date | awk '{print $1}'`
+
+find_date=$((date-7))
+
+if [ "$day" == "Mon" ]; then day_n=0
+elif [ "$day" == "Tue" ]; then day_n=1
+elif [ "$day" == "Wed" ]; then day_n=2
+elif [ "$day" == "Thu" ]; then day_n=3
+elif [ "$day" == "Fri" ]; then day_n=4
+elif [ "$day" == "Sat" ]; then day_n=5
+elif [ "$day" == "Sun" ]; then day_n=6
+fi
+
+start=$((find_date-day_n))
+end=$((find_date-day_n+6))
+
+for i in `seq $start $end`
+do
+if [ $start -eq $i ]
+then
+  find_list="$i"
+else
+  find_list="$find_list|$i"
+fi
+done
+
+ls /root/day_test/ | egrep `echo $find_list`
