@@ -1,0 +1,16 @@
+#! /bin/bash
+# Usage: $0 <directory> [<directory>...]
+for directory in $@
+do
+    test_file="$directory/flock-user-test.$$"
+    printf "\nTest locking file: %s\n" "$test_file"
+    touch "$test_file"
+    {
+        #fuser "$test_file"
+        flock -w 2 -x $test_fd || printf "Lock failed: %d\n" $?
+        #ls -l /proc/$$/fd
+        #fuser "$test_file"
+        flock -u -x $test_fd || printf "Unlock failed: %d\n" $?
+    } {test_fd}<"$test_file"
+    rm -f "$test_file"
+done
