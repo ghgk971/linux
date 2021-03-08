@@ -1,0 +1,16 @@
+for 문 파일 경로 지정 시 참조
+
+1. 파일명만 검색
+  for i in `ls /etc/drbd.d/ | grep res`
+  
+  ls /etc/drbd.d/ | grep res
+    => drbd_res01.res
+    
+    
+2. 모든 경로 포함 검색
+  for i in `ls /etc/drbd.d/*.res
+
+  ls /etc/drbd.d/*.res
+    => /etc/drbd.d/drbd_res01.res
+
+  
