@@ -1,0 +1,5 @@
+sysctl -a --ignore 2>/dev/null | grep -i max_map_count
+
+
+
+https://unix.stackexchange.com/questions/473660/sysctl-command-returning-info-not-asked-about
