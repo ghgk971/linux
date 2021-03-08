@@ -5,3 +5,6 @@ pvs vg lvs attr 확인
   - # man 8 vgs
   - # man 8 lvs
   - attr 검색
+
+
+https://access.redhat.com/solutions/3543871
