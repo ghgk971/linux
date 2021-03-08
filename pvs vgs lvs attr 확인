@@ -1,0 +1,7 @@
+pvs vg lvs attr 확인
+
+1. 위 명령을 통해 attr 값 확인 방법
+  - # man 8 pvs
+  - # man 8 vgs
+  - # man 8 lvs
+  - attr 검색
