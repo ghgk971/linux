@@ -1,0 +1,7 @@
+port range 내 랜덤포트로 사용하지 않도록 예약 지정
+  - # cat /etc/sysctl.conf
+  - net.ipv4.ip_local_port_range = 22000 22003
+  - net.ipv4.ip_local_reserved_ports = 22001
+
+
+https://access.redhat.com/solutions/26875
