@@ -12,3 +12,15 @@ RHEL7에서 abrtd 서비스없이 애플리케이션 코어 덤프를 수집하�
 
 RHEL에서 Java 프로세스를 중단하지 않고 코어 덤프를 생성하는 방법은 무엇입니까?
   - https://access.redhat.com/solutions/277393
+
+Red Hat Enterprise Linux 6/7/8에서 제공되는 충돌 프로그램의 코어 덤프 파일을 수집하는 방법은 무엇입니까?
+  - https://access.redhat.com/solutions/56021
+  
+ABRT 코어 덤프 디렉토리를 변경하는 방법은 무엇입니까?
+  - https://access.redhat.com/solutions/294563
+  
+Red Hat Enterprise Linux에서 생성 된 이전 ABRT 코어 덤프를 삭제하는 방법은 무엇입니까?
+  - https://access.redhat.com/solutions/2061923
+  
+선택한 실행 파일에 대한 충돌 보고서 생성 / 감지에서 abrt를 중지하는 방법은 무엇입니까?
+  - https://access.redhat.com/solutions/62158
