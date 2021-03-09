@@ -1,0 +1,9 @@
+1. python 임시 포트 구동
+  - # python -m SimpleHTTPserver 1111
+  - 1111 port 구동
+  
+  
+참조
+  - http://dveamer.github.io/backend/PythonSimpleHTTPServer.html
+  - https://developer.mozilla.org/ko/docs/Learn/Common_questions/set_up_a_local_testing_server
+  - https://www.redhat.com/sysadmin/simple-http-server
