@@ -1,0 +1,11 @@
+1. TCP
+  - # telnet [IP] [PORT]
+  
+2. UDP
+  - # nc -zu [IP] [PORT]
+  
+  
+  
+  
+UDP  
+http://www.toyzon.com/?p=275
