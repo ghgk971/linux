@@ -1,0 +1,5 @@
+1. 현재 설정 값 확인
+  - # useradd -D
+  
+2. 설정 값 저장 경로
+  - # vi /etc/default/useradd
