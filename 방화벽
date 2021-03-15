@@ -1,0 +1,35 @@
+다음과 같이 firewalld rule 을 추가하신 후 `pcs cluster start` 를 수행하시면 corosync 서비스가 정상적으로 시작될 것으로 보입니다.
+
+ # firewall-cmd --direct --add-rule ipv4 filter OUTPUT 2 -d <IP>/<prefix> -j DROP
+
+ ex)  firewall-cmd --direct --add-rule ipv4 filter OUTPUT 2 -d 192.168.100.11/24 -j DROP
+
+추가했던 rule 은 다음과 같이 제거하실 수 있습니다.
+
+ ex)  firewall-cmd --direct --remove-rule ipv4 filter OUTPUT 2 -d 192.168.100.11/24 -j DROP
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+1) corosync-2.4.5-4.el7 이전 버전의, RRP 구성을 사용하는 클러스터 환경을 준비합니다.
+
+2) 1번 노드에서 클러스터 서비스를 시작시킵니다.
+
+ # pcs cluster start
+
+3) 1번 노드에서 ring 하나에 대한 트래픽을 차단할 수 있도록 방화벽 규칙을 적용합니다.
+
+ # firewall-cmd --direct --add-rule ipv4 filter OUTPUT 2 -d 192.168.100.11/24 -j DROP
+
+4) 2번 노드에서 corosync 서비스를 시작시킵니다.
+
+ # systemctl start corosync
+
+5) 2번 노드에서 corosync 서비스가 초기화되면서 하나의 ring 이 faulty 임을 감지하면 start 에 실패합니다.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+https://access.redhat.com/solutions/79523
+
+https://access.redhat.com/solutions/2476741
