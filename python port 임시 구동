@@ -1,7 +1,14 @@
 1. python 임시 포트 구동
-  - # python -m SimpleHTTPserver 1111
+    [python 2]
+  - # python -m SimpleHTTPServer 1111
+  
+    [python 3]
+  - python -m http.server 1111
+
   - 1111 port 구동
   
+2. No module named SimpleHTTPserver 에러 출력 시
+  - 
   
 참조
   - http://dveamer.github.io/backend/PythonSimpleHTTPServer.html
