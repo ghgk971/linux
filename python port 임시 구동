@@ -7,8 +7,6 @@
 
   - 1111 port 구동
   
-2. No module named SimpleHTTPserver 에러 출력 시
-  - 
   
 참조
   - http://dveamer.github.io/backend/PythonSimpleHTTPServer.html
