@@ -1,0 +1,11 @@
+1. 특정 단어를 포함한 라인 제거
+  - # sed -i '/pattern/d' filename    
+  
+https://stackoverflow.com/questions/5410757/how-to-delete-from-a-text-file-all-lines-that-contain-a-specific-string
+
+
+2. 특정 단어를 포함한 라인 모든 내용 변경
+  - # sed -i "행번호s/.*/새문자열/g" 파일명
+  
+  https://zetawiki.com/wiki/%EB%A6%AC%EB%88%85%EC%8A%A4_%ED%8C%8C%EC%9D%BC_%ED%8A%B9%EC%A0%95_%ED%96%89_%EB%82%B4%EC%9A%A9_%EA%B5%90%EC%B2%B4
+  
