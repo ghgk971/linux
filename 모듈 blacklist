@@ -1,0 +1,15 @@
+1. 사용하지 않는 모듈 blacklist 처리
+  - # vi /etc/modprobe.d/blacklist
+      blacklist softdog
+      blacklist iTCO_wdt
+      
+2. grub 변경
+  - # vi /etc/default/grub
+    modprobe.blacklist=iTCO_wdt 추가
+  - # grub2-mkconfig -o /boot/grub2/grub.cfg
+  
+  
+  둘중 하나만 하면 될듯
+  
+https://askubuntu.com/questions/110341/how-to-blacklist-kernel-modules
+https://bbs.archlinux.org/viewtopic.php?id=133083
