@@ -1,0 +1,9 @@
+1. 단어 개수 확인
+  - # wc -w
+  
+2. 라인 확인
+  - # wc -l
+  
+ 
+ 참조
+   - https://jhnyang.tistory.com/150
