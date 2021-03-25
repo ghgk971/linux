@@ -1,0 +1,22 @@
+변수에 다른 변수의 이름을 넣고 해당 값 가져오기
+
+ex
+a = b
+b = 123
+
+echo $a 를했을 때 $b를 출력하며 $b의 123 값을 가져오기
+
+eval echo "$"${a}
+
+#!/bin/bash
+
+SCORE_VAL=100 # a
+STRING="SCORE"  #b
+
+REAL=$(eval echo \$${STRING}_VAL)
+
+echo "REAL : " ${REAL}
+
+
+
+https://goodjoon.tistory.com/153
