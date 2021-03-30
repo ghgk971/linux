@@ -1,0 +1,9 @@
+1. kernel 설치 하였으나 새로운커널로 부팅되지 않음
+  - # grub2-editenv list (변경된 커널로 확인됨)
+  - # uname -a (이전커널로 확인)
+  
+2. 원인
+  - /boot 가 마운트 되지 않고 / 아래에 boot를 사용
+  - 실제 grub이 인스톨되어 있는 영역은 /dev/sda1
+  - 그러므로 이전 grub을 불러와 새로 설정된 kernel이 적용되지 않음
+  - grub2-install /dev/sda 와 같이 grub을 재설치 한 후 적용하 함
