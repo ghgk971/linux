@@ -13,7 +13,7 @@
   - # perl -pe '$.==2 and print "추가할 문자열\n"' file.txt
 
 
-4. 특정 라인 내용 제거하여 수정하기
+4. 특정 라인 내용 수정하기
   - # sed -i '2s/.*/OCF_RESKEY_pgctl_default=$db_homedir/g' /usr/lib/ocf/resource.d/heartbeat/pgsql"
 
 5. 특정 단어와 일치하는 라인 제거
