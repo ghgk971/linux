@@ -26,7 +26,9 @@
 1. IP, gateway, dns설정
   - # nmcli connection add con-name Example-Connection ifname enp7s0 type ethernet
   - IPv4
-  - # nmcli connection modify Example-Connection ipv4.dhcp-hostname Example ipv6.dhcp-hostname Example
+  - # nmcli connection modify Example-Connection ipv4.method auto (직접 실행해봄)
+  
+  - # nmcli connection modify Example-Connection ipv4.dhcp-hostname Example ipv6.dhcp-hostname Example (레드햇 내용)
   - # nmcli connection modify Example-Connection ipv4.dhcp-client-id client-ID
   - IPv6
   - dhcp-client-id ipv6에 매개변수가 없음 IPv6에 대한 식별자를 생성하려면 dhclient 서비스를 구성하여야 함
