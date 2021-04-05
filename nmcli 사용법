@@ -70,4 +70,5 @@ teaming
   - # teamdctl team0 state (상태 확인)
 
 
-#nmcli connection modify bond0 master team0nmcli connection modify bond1 master team0
+기존 설정 기반으로 생성
+  - #nmcli connection modify bond0 master team0nmcli connection modify bond1 master team0
