@@ -1,0 +1,4 @@
+1. sosreport 명령으로 sar 수집
+  - # sosreport -o sar -k sar.sar.all_sar --name sarlog
+  - # ls /var/tmp/sosreport-salog-DATE.tar.xz
+  
