@@ -1,0 +1,44 @@
+1. iso 이미지 패키지 목록 추출
+  - 스크립트 작성
+[RHEL7]
+#!/bin/bash
+
+for i in `ls /data/iso/ | grep rhel-server-7`
+do
+  mount -o loop /data/iso/$i /mnt
+  cp /mnt/repodata/`ls /mnt/repodata/ | grep filelists.xml.gz` /root/repodata/${i}.gz
+  umount /mnt
+done
+
+[RHEL8]
+#!/bin/bash
+
+for i in `ls /data/iso/ | grep rhel-8 | grep "dvd.iso"`
+do
+  mount -o loop /data/iso/$i /mnt
+  cp /mnt/BaseOS/repodata/`ls /mnt/BaseOS/repodata/ | grep filelists.xml.gz` /root/rhel8_repo/${i}_BaseOS.gz
+  cp /mnt/AppStream/repodata/`ls /mnt/AppStream/repodata/ | grep filelists.xml.gz` /root/rhel8_repo/${i}_AppStream.gz
+  umount /mnt
+done
+
+2. 압축 해제
+  - # cd /root/repodata/
+  - # gunzip *
+  
+3. 목록 파일로 작성
+  - 스크립
+#!/bin/bash
+
+for i in `ls /root/repodata/ | grep -v version`
+do
+  for j in `cat /root/repodata/$i | grep "<package" | awk '{print $2}'`
+  do
+    name=`cat /root/repodata/$i | grep $j | awk '{print $3}' | cut -d '=' -f 2 | tr -d '"'`
+    ver=`cat /root/repodata/$i | grep -A 1 $j | tail -n 1 | awk '{print $3}' | cut -d '=' -f 2 | tr -d '"'`
+    rel=`cat /root/repodata/$i | grep -A 1 $j | tail -n 1 | awk '{print $4}' | cut -d '=' -f 2 | tr -d '"' | cut -d '/' -f 1`
+    arch=`cat /root/repodata/$i | grep $j | awk '{print $4}' | cut -d '=' -f 2 | tr -d '"' | cut -d '>' -f 1`
+
+    os=`echo "$i" | cut -d . -f -2`
+    echo "${name}-${ver}-${rel}.${arch}.rpm" >> /root/repodata/${os}_pkg_version.txt
+  done
+done
