@@ -1,0 +1,215 @@
+//// 참조
+
+https://docs.oracle.com/cd/E52668_01/E54669/html/ol7-panic-params.html
+
+/usr/share/doc/kernel-doc-3.10.0/Documentation/kernel-parameters.txt
+
+////
+
+* kernel.hung_task_panic
+
+  - default = 0
+
+  - 1로 설정 시 kernel 또는 user thread가 kernel.hung_task_timeout_secs 초 이상 동안 sleep 일때 패닉 발생(응답이 없는 상태)
+
+  - /proc/PID/stack을 보면 커널 스레드와 사용자 스레드 모두에 대한 커널 스택을 볼 수 있음
+
+​
+
+* kernel.hung_task_timeout_secs
+
+  - default: 120
+
+  - 경고 메시지가 생성되거나 커널 패닉(kernel.hung_task_panic 값이 1인 경우) 전에 사용자 또는 커널 스레드가 sleep 상태를 유지 할 수 있는 시간 지정
+
+  - 0: 비활성
+
+​
+
+* kernel.nmi_watchdog
+
+  - default: 1
+
+  - 1인 경우 커널의 NMI(Non-Maskable Interrupt) watchdog thread 활성화
+
+  - NMI Switch 또는 OProfile 시스템 프로파일링을 사용하여 정의 되지 않은 NMI를 생성하려면 0로 설정
+
+​
+
+*  kernel.panic = 0
+
+  - default: 0
+
+  - 패닉 발생 시 얼마나 지난 후에 재부팅 해야 하는지에 대한 시간(초)
+
+  - 0 인 경우 패닉 상태 그대로 유지
+
+  - N 시간인 경우 지정된 N 시간 만큼 대기 후 재부팅
+
+  - 만약 0보다 작으면 즉시 재부팅
+
+​
+
+* kernel.panic_on_io_nmi
+
+  - 커널이 일반적으로 수정할 수 없는 I/O 오류로 인해 NMI(Non Maskable Interrupt)가 발생 할 경우 패닉 허용 여부
+
+  - default: 0
+
+  - 1: 패닉 허용
+
+  - 0: 패닉 허용 하지 않음
+
+​
+
+* kernel.panic_on_oops
+
+  - default: 1
+
+  - 0인 경우 oops 또는 BUG 조건이 발생 하면 패닉 미발생
+
+  - 1인 경우 oops 또는 BUG 조건이 발생 하면 패닉
+
+​
+
+* kernel.panic_on_stackoverflow
+
+  - default: 0
+
+  - 1 이면 커널이 커널 스택에서 오버플로우를 감지할 경우 패닉 발생
+
+  - 0이면 패닉 발생 하지 않음
+
+​
+
+* kernel.panic_on_unrecovered_nmi
+
+  - default: 0
+
+  - 1인 경우 복구 불가능한 parity 또는 ECC 메모리 오류를 나타내는 알 수 없는 NMI가 감지 된경우 패닉
+
+  - 0: 패닉 허용 하지 않음
+
+​
+
+* kernel.softlockup_panic
+
+  - default: 0
+
+  - watch dog task는 현재 timestamp를 CPU(per-cpu) data structure에 저장
+
+  - 해당 timestamp가 2 x watchdog_thresh 초(softlockup threshold) 동안 업데이트 되지 않으면 디버그 정보 dump, 값이 1인 경우 패닉 발생, 0인 경우 패닉 미 발생
+
+​
+
+* kernel.unknown_nmi_panic
+
+  - default: 0
+
+  - 1인 경우 커널이 H/W로 부터 인식 할 수 없는 NMI 신호를 받을 경우 패닉 발생
+
+  - 일반적으로 NMI 스위치를 수동으로 눌러 정의 되지 않은 NMI 생성
+
+  - NMI watch dog thread는 정의 되지 않은 NMI를 사용하기 때문에 kernel.nmi_watchdog를 1로 설정하면 kernel.unknown_nmi_panic 값은 0이어야 함
+
+​
+
+* kernel.watchdog_thresh
+
+  - default: 10(초)
+
+  - 커널이 hard-lockup, soft-lockup 오류를 확인하는데 사용하는 NMI 성능 모니터링 인터럽트 생성간격 지정
+
+  - CPU가 kernel.watchdog_thresh 초 이상 동안 인터럽트에 응답하지 않으면 hard-lockup 오류 발생
+
+  - 0 값은 오류 감지 비활성
+
+​
+
+* net.ipv4.icmp_echo_ignore_broadcasts
+
+  - 브로드캐스트로 부터 오는 ping을 차단.(Smurt 공격 차단)
+
+​
+
+* net.ipv4.icmp_ignore_bogus_error_responses
+
+  - IP나 TCP의 해더가 깨진 bad icmp packet을 무시(ping)
+
+​
+
+* bridge 관련
+
+​
+
+  - net.bridge.bridge-nf-call-arptables
+
+    > 1 : pass bridged ARP traffic to arptables' FORWARD chain.
+
+    > 0 : disable this.
+
+    > Default: 1
+
+​
+
+  - net.bridge.bridge-nf-call-iptables
+
+    > 1 : pass bridged IPv4 traffic to iptables' chains.
+
+    > 0 : disable this.
+
+    > Default: 1
+
+​
+
+  - net.bridge.bridge-nf-call-ip6tables
+
+    > 1 : pass bridged IPv6 traffic to ip6tables' chains.
+
+    > 0 : disable this.
+
+    > Default: 1
+
+​
+
+  - net.bridge.bridge-nf-filter-vlan-tagged
+
+    > 1 : pass bridged vlan-tagged ARP/IP/IPv6 traffic to {arp,ip,ip6}tables.
+
+    > 0 : disable this.
+
+    > Default: 0
+
+​
+
+  - net.bridge.bridge-nf-filter-pppoe-tagged
+
+    > 1 : pass bridged pppoe-tagged IP/IPv6 traffic to {ip,ip6}tables.
+
+    > 0 : disable this.
+
+    > Default: 0
+
+​
+
+  - net.bridge.bridge-nf-pass-vlan-input-dev
+
+    > 1: if bridge-nf-filter-vlan-tagged is enabled, try to find a vlan
+
+            interface on the bridge and set the netfilter input device to the vlan.
+
+            This allows use of e.g. "iptables -i br0.1" and makes the REDIRECT
+
+            target work with vlan-on-top-of-bridge interfaces. When no matching
+
+            vlan interface is found, or this switch is off, the input device is
+
+            set to the bridge interface.
+
+    > 0: disable bridge netfilter vlan interface lookup.
+
+    > Default: 0
+
+
+http://blog.naver.com/PostView.nhn?blogId=kmk1030&logNo=221353732675
+
