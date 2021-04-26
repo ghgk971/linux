@@ -1,0 +1,79 @@
+1. cgroup 설정
+  - # yum install libcgroup-tools
+  - # vi /etc/cgconfig.conf
+group test_10 {
+memory {
+  memory.limit_in_bytes = "100m";
+  memory.swappiness = "10";
+  }
+}
+
+group test_0 {
+memory {
+  memory.limit_in_bytes = "100m";
+  memory.swappiness = "0";
+  }
+}
+
+  - # systemctl restart cgconfig
+  - # systemctl restart cgred
+
+
+2. 설정 값 확인
+  - # cgget -g memory test_0
+memory.kmem.tcp.max_usage_in_bytes: 0
+memory.kmem.tcp.failcnt: 0
+memory.kmem.tcp.usage_in_bytes: 0
+memory.kmem.tcp.limit_in_bytes: 9223372036854771712
+memory.memsw.failcnt: 0
+memory.limit_in_bytes: 10485760
+memory.memsw.max_usage_in_bytes: 0
+memory.memsw.usage_in_bytes: 0
+memory.kmem.max_usage_in_bytes: 0
+memory.kmem.failcnt: 0
+memory.kmem.usage_in_bytes: 0
+memory.kmem.limit_in_bytes: 9223372036854771712
+memory.numa_stat: total=0 N0=0
+        file=0 N0=0
+        anon=0 N0=0
+        unevictable=0 N0=0
+memory.oom_control: oom_kill_disable 0
+        under_oom 0
+memory.move_charge_at_immigrate: 0
+memory.swappiness: 20
+memory.use_hierarchy: 1
+memory.stat: cache 0
+        rss 0
+        rss_huge 0
+        mapped_file 0
+        swap 0
+        pgpgin 0
+        pgpgout 0
+        pgfault 0
+        pgmajfault 0
+        inactive_anon 0
+        active_anon 0
+        inactive_file 0
+        active_file 0
+        unevictable 0
+        hierarchical_memory_limit 10485760
+        hierarchical_memsw_limit 9223372036854771712
+        total_cache 0
+        total_rss 0
+        total_rss_huge 0
+        total_mapped_file 0
+        total_swap 0
+        total_pgpgin 0
+        total_pgpgout 0
+        total_pgfault 0
+        total_pgmajfault 0
+        total_inactive_anon 0
+        total_active_anon 0
+        total_inactive_file 0
+        total_active_file 0
+        total_unevictable 0
+memory.failcnt: 0
+memory.soft_limit_in_bytes: 9223372036854771712
+memory.memsw.limit_in_bytes: 9223372036854771712
+memory.max_usage_in_bytes: 0
+memory.usage_in_bytes: 0
