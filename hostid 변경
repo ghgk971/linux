@@ -1,0 +1,19 @@
+1. hostid는 기본적으로 ip에 따라서 생성 되는것으로 보여짐
+  - https://access.redhat.com/solutions/34365
+  
+2. /etc/hostid 에 내용이 정의되어 있을 경우 해당 값으로 생성됨
+  - 8진수로 입력해야 함
+  - # echo -e -n "\0243\0220\0300\0250" > /etc/hostid
+  - 0243 = A3, 0220 = 90, 0330 = C0, 0250 = A8
+  - a8c090a3 로 입력됨 (# hostid)
+  - https://www.dell.com/community/Host-Systems/how-to-change-the-hostid/td-p/6627229
+  
+3. 스크립트 활용
+  - python
+from struct import pack
+
+filename = "/etc/hostid"
+hostid = pack("I",int("0x210a2501",16))
+open(filename,"wb").write(hostid)
+
+  - https://access.redhat.com/articles/15452
