@@ -1,0 +1,17 @@
+1. segfault 메세지 확인 - 타사의 어플리케이션인 경우 해당 어플리케이션 업체측으로 문의 필요
+  - 응용 프로그램이 존재하지 않는 메모리에 액세스하거나 지원되지 않는 방식으로 메모리에 액세스하려고 할 때 세그 폴트가 발생
+  - 참조 : https://access.redhat.com/solutions/53793
+  
+2. segfault error 번호 확인
+  - error 값에 따라 bit 계산
+  - error 4 = user-mode / read
+  - error 6 = user-mode / write
+  - 참조 : https://access.redhat.com/articles/372743
+  - 참조 : https://utcc.utoronto.ca/~cks/space/blog/linux/KernelSegfaultErrorCodes
+  
+3. 하드웨어 ram 결함 확인 방법
+  - 참조 : https://access.redhat.com/solutions/15693
+  
+4. coredump 수집 관련
+  - 참조 : https://access.redhat.com/solutions/56021
+  
