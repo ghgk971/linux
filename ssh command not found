@@ -1,0 +1,20 @@
+1. ssh 로 명령 수행 시 command not found 출력
+  증상
+스크립트 실행 : 
+  /home/iamsp/score/monthly_02_check_config.sh: line 39: pcs: command not found
+명령 실행 :
+  # ssh [user]@[IP] "pcs status"
+  bash: pcs: command not found
+
+
+확인 결과
+  - ssh 의 경우 컴파일 시 기본적으로 잡혀있는 PATH가 존재
+  - 해당 PATH 의 명령어가 아닐경우 사용하지 못함
+  - # cat /etc/ssh/sshd_config | grep PATH
+     RHEL7 : # This sshd was compiled with PATH=/usr/local/bin:/usr/bin
+     RHEL8 : # This sshd was compiled with PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+
+조치 방법
+ssh 명령 실행 시 PATH 변경을 추가
+ex) ssh [user]@[IP] "PATH=$PATH:/usr/sbin ; pcs status"
+  
