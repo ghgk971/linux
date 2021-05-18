@@ -64,3 +64,43 @@ https://access.redhat.com/solutions/3465631
 https://access.redhat.com/solutions/56494
 https://access.redhat.com/articles/43023
 https://ata.wiki.kernel.org/index.php/ATA_4_KiB_sector_issues
+
+
+
+
+
+
+2. parted 계산 방식
+  - parted를 사용하여 최상의 성능을 위해 파티션을 정렬하는 방법
+  - # cat / sys / block / sdb / queue / optimal_io_size
+    1048576
+  - # cat / sys / block / sdb / queue / minimum_io_size
+    262144
+  - # cat / sys / block / sdb / alignment_offset
+    0
+  - # cat / sys / block / sdb / queue / physical_block_size
+    512
+    
+    alignment_offset에 optimize_io_size 를 추가 하고 결과를 physical_block_size로 나눕니다 . 제 경우에는 (1048576 + 0) / 512 = 2048 입니다.
+    
+  - 해당 값이 parted 시작 위치의 최상의 값
+    
+참조 
+https://rainbow.chard.org/2013/01/30/how-to-align-partitions-for-best-performance-using-parted/
+https://superuser.com/questions/1264856/storage-device-alignment-calculate-the-alignment-of-subsequent-partitions-of
+(해당 방법은 잘못된 방법이라는 내용이 있음)
+아래 링크
+https://linux-blog.anracom.com/2018/12/03/linux-ssd-partition-alignment-problems-with-external-usb-to-sata-controllers-i/
+
+각 옵션 설명
+https://www.linuxtopia.org/online_books/rhel6/rhel_6_storage_admin/rhel_6_storage_newstorage-iolimits.html
+
+
+파티션 시작 끝 계산 방법
+https://unix.stackexchange.com/questions/510868/how-to-calculate-partition-start-end-sector
+
+parted 사용하여 정렬된 파티션 생성
+https://unix.stackexchange.com/questions/38164/create-partition-aligned-using-parted
+
+parted 관련 문서
+https://wiki.archlinux.org/title/Parted#Alignment
