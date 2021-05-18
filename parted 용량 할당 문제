@@ -1,0 +1,66 @@
+1. parted 용량 할당 시 아래 오류 발생
+  - 섹터 조정으로 인하여 발생 하는 것으로 보여짐
+  'Warning: The resulting partition is not properly aligned for best performance.' 
+
+(parted)                                                                  
+(parted) select /dev/emcpowerj
+Using /dev/emcpowerj
+(parted) p                                                                
+Model: Unknown (unknown)
+Disk /dev/emcpowerj: 1396GB
+Sector size (logical/physical): 512B/512B
+Partition Table: gpt
+Disk Flags: 
+
+Number  Start  End  Size  File system  Name  Flags
+
+(parted) unit s                                                           
+(parted) p
+Model: Unknown (unknown)
+Disk /dev/emcpowerj: 2726297600s
+Sector size (logical/physical): 512B/512B
+Partition Table: gpt
+Disk Flags: 
+
+Number  Start  End  Size  File system  Name  Flags
+
+(parted) mkpart                                                           
+Partition name?  []?                                                      
+File system type?  [ext2]?                                                
+Start? 2048s                                                              
+End? 2726297600s                                                          
+Error: The location 2726297600s is outside of the device /dev/emcpowerj.
+(parted) mkpart                                                     
+Partition name?  []? 
+File system type?  [ext2]?                                                
+Start? 2048s                                                        
+End? 2726297599s                                                          
+Warning: You requested a partition from 2048s to 2726297599s (sectors 2048..2726297599).
+The closest location we can manage is 2048s to 2726297566s (sectors 2048..2726297566).
+Is this still acceptable to you?
+Yes/No? y                                                                 
+Warning: The resulting partition is not properly aligned for best performance.
+Ignore/Cancel? I                                                          
+(parted) p                                                                
+Model: Unknown (unknown)
+Disk /dev/emcpowerj: 2726297600s
+Sector size (logical/physical): 512B/512B
+Partition Table: gpt
+Disk Flags: 
+
+Number  Start  End          Size         File system  Name  Flags
+ 1      2048s  2726297566s  2726295519s
+
+(parted)                                                                  
+(parted) align-check optimal 1                                            
+1 not aligned
+(parted)      
+ 
+
+
+  
+참조
+https://access.redhat.com/solutions/3465631
+https://access.redhat.com/solutions/56494
+https://access.redhat.com/articles/43023
+https://ata.wiki.kernel.org/index.php/ATA_4_KiB_sector_issues
