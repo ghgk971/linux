@@ -74,7 +74,7 @@ teaming
 
 
 bonding primary 지정
- # nmcli connection modify bond0 +bond.options primary=ens34 +bond.options miimon=100 +bond.options updelay=0 +bond.options downdelay=0
+ # nmcli dev mod bond0 +bond.options "primary=ens3"
 
 기존 설정 기반으로 생성
   - #nmcli connection modify bond0 master team0nmcli connection modify bond1 master team0
