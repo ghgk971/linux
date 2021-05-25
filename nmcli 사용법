@@ -73,8 +73,9 @@ teaming
 
 
 
-bonding primary 지정
- # nmcli dev mod bond0 +bond.options "primary=ens3"
+teaming priority 지정
+
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-configure_a_network_team_using-the_command_line
 
 기존 설정 기반으로 생성
   - #nmcli connection modify bond0 master team0nmcli connection modify bond1 master team0
