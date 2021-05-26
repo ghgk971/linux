@@ -1,0 +1,26 @@
+1. ssh root 계정 접속 제한
+  - sshd_config 설정 변경
+  -  # vi /etc/ssh/sshd_config   (RHEL7 기준 PermitRootLogin은 기본값으로 주석처리 되어 있습니다.)
+        PermitRootLogin no    수정 또는 작성 후 저장
+  - 서비스 재시작
+  - # systemctl restart sshd (RHEL7) 
+  - # service sshd restart (RHEL6)
+  
+  
+2. telnet root 계정 접속 제한
+  - securetty 설정 상 pts/n 존재 여부 확인
+  - # cat /etc/securetty | grep pts (보내주신 내용 상으로 존재하지는 않으나, 만약 존재 시 내용 삭제해주시기 바랍니다.)
+  - login pam 설정
+  - # cat /etc/pam.d/login | grep pam_securetty   (현재 pam_securetty.so 모듈이 사용되도록 작성 되어 있습니다.)
+    auth [user_unknown=ignore success=ok ignore=ignore default=bad] pam_securetty.so
+
+
+
+
+
+https://itknowledge.tistory.com/32
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/managing_smart_cards/pam_configuration_files
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/pam_configuration_files
+https://m.blog.naver.com/PostView.naver?blogId=shackerz&logNo=220539470884&proxyReferer=https:%2F%2Fwww.google.com%2F
+https://wariua.github.io/linux-pam-docs-ko/sag-pam_securetty.html
+https://m.blog.naver.com/leekh8412/220872048171
