@@ -1,0 +1,18 @@
+container lang install
+
+1. container lang 설치 간 정상적으로 설치 되지 않음
+  - yum reinstall glibc-common
+
+2. rpm -ql glibc-common 으로는 파일이 보이나 실제 파일 없음
+
+3. yum 설정 변경 필요
+  - # vi /etc/yum.conf
+    override_install_langs=en_US  <- 해당 부분 주석처러
+  - # yum reinstall glibc-common
+  - # locale -a 정상 출력
+  - override_install_langs가 glibc-common 설치 시 언어 영어만 설치되도
+
+
+https://sungro.tistory.com/9
+
+https://serverfault.com/questions/616790/how-to-add-language-support-on-centos-7-on-docker
