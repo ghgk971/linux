@@ -1,0 +1,6 @@
+동일한 서브넷 비권장
+  - https://access.redhat.com/solutions/30564
+
+동일한 서브넷 라우팅 관련 룰 설정
+  - https://access.redhat.com/solutions/288823
+  - https://access.redhat.com/solutions/19596
