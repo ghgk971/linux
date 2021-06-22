@@ -19,3 +19,105 @@ T : Red Hat extension, Technology Preview code was loaded; cf. Technology Previe
 
 로그 확인 
 https://access.redhat.com/solutions/40594
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+환경 
+□ Red Hat Enterprise Linux (RHEL) 6
+□ HPE
+□ BIOS Mode Legacy
+
+문제
+□ RHEL6.9 OS 운영 중, Kdump Test시 미생성 이슈 발생
+□ Vendor 에서 제공하는 Qlogic Driver 설치
+
+해결
+•/etc/sysconfig/kdump 설정에서 "--allow-missing" 옵션 추가
+•/etc/kdump.conf 설정에서 blacklist 모듈 추가
+
+1. /etc/sysconfig/kdump - "allow-missing" 옵션 추가 
+KDUMP_COMMANDLINE_APPEND="irqpoll nr_cpus=1 reset_devices cgroup_disable=memory mce=off acpi_no_memhotplug"
+MKDUMPRD_ARGS="--allow-missing" 
+ 
+2. /etc/kdump.conf - blacklist 모듈 추가
+blacklist qla2xxx
+ 
+3. 사용 중인 Qlogic 드라이버 경로 확인
+# modinfo -n qla2xxx
+/lib/modules/2.6.32-754.15.3.el6.x86_64/weak-updates/qlgc-qla2xxx/qla2xxx.ko 
+
+
+근본 원인
+•kdump service 를 시작할 경우, kdump ramdisk 이미지 생성을 위해 mkdumprd 를 수행하게 되고
+이때 사용되는 "--allow-missing" 옵션은 mkdumprd 진행 단계에서 OS 내에서 제공되지 않는 외부에서 설치된 모듈(타사)을 무시하도록 적용시키는 옵션. 
+* 추가 확인 결과, 해당 옵션은 kdump start 로 인한 kdump image 생성 시 외부모듈 미인식으로 인한 Fail 상황 발생 시에만 적용되는 것으로 보임.
+•OS crash 발생 시, kdump service 로 부터 kdump 이미지가 로딩되고 OS 에서 사용하고있는 적재중인 memory 정보를 파일 형식으로 생성(vmcore 생성)
+하지만 기본적으로 OS 에서 제공하는 driaver 를 사용하지 않고 외부에서 설치된 모듈을 사용할 경우, 미리 정의된 kdump 예약 메모리(crashkernel) 에서 이 모듈에 대한 정보를 읽어들이지 못해 kdump 가 정상적으로 수행되지 않으며,
+이는 타사 Qlogic 모듈을 사용 중일 때 발생할 수 있는 사항으로 현재 시스템과 같이 외부 모듈을 사용 중일 경우, 사용 중인 모듈을 blacklist 설정을 통해 kdump 수행이 정상적으로 진행될 수 있도록 적용하는 설정.
+
+
+진단 단계
+외부 모듈 blacklist 및 사용 중인 Qlogic Driver 설치 경로 확인
+
+참고 URL
+•https://access.redhat.com/solutions/180113
+•https://access.redhat.com/solutions/3536351
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Fujitsu + RHEL7 + Legacy 환경에서 kdump 미동작 이슈
+
+환경 
+□ Red Hat Enterprise Linux (RHEL) 7
+□ FUJITSU RX2540 M4
+□ BIOS Mode Legacy
+
+문제
+□ Kernel version 3.10.0-862.el7.x86_64 이후 버전에서 Fujitsu BIOS 모드가 Legacy 일 경우 Vmcore 미발생
+□ 이전 커널에서는 정상 Dump 생성 확인
+
+해결
+•Kdump Kernel 진행 시 일부 드라이버가 인식 되지 않도록 blacklist 처리필요
+•BIOS FIX :
+RX2540 M4 = v5.0.0.12 - R1.40.0 / https://support.ts.fujitsu.com/IndexDownload.asp?SoftwareGuid=54AD89D6-9CA5-4D28-BA51-CCF5A2ED8675
+RX2540 M5 = v5.0.0.14 - R1.18.0 (10/02/2020) / https://support.ts.fujitsu.com/IndexDownload.asp?SoftwareGuid=E368261C-A45D-41E7-AA17-1D1C80242D71
+
+1. Blacklist 추가
+
+1. # vi /etc/sysconfig/kdump 내용 추가
+KDUMP_COMMANDLINE_APPEND="irqpoll nr_cpus=1 reset_devices cgroup_disable=memory mce=off numa=off udev.children-max=2 panic=10 rootflags=nofail acpi_no_memhotplug transparent_hugepage=never rd.driver.blacklist=qla2xxx,igb,i40e,kvm,sunrpc,nfsd,nfs,nfsv3,kvm_intel,lockd"
+
+2. 기존 kdump ramdisk 제거
+# rm -f /boot/initramfs-$(uname -r)kdump.img
+
+3) Kdump 재시작 및 Ramdisk 재생성 확인
+# systemctl restart kdump
+# ls -ltr /boot/initramfs*
+
+ 
+2. OS 재부팅 후 Crash Dump Test
+•Crash Dump Test
+# echo c >/proc/sysrq-trigger
+
+Note: 운영 중인 환경에서는 재부팅이 발생되오니 주의 필요
+
+
+3. 재부팅 후 Vmcore 생성 확인
+# cd /var/crash
+# ls -als 
+정상 :  <Dump 생성 시간의 폴더 생성 및 vmcore 파일 존재>
+ 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Fujitsu + RHEL7 + UEFI 환경에서 kdump 미동작 이슈 
+
+
+
+
+
