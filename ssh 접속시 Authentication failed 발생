@@ -1,7 +1,0 @@
-ssh 접속 시 Authentication failed. 발생
-  - /run/nologin 파일 삭제
-  - pam_nologin.so 모듈이 해당 파일 존재 시 로그인을 차단하는것으로 보여짐
-  
-참조
-  - https://access.redhat.com/discussions/4321031
-  
