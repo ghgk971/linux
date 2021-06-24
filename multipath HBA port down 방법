@@ -1,0 +1,5 @@
+1. device offline
+  - # echo offline > /sys/block/sdb/device/state
+  
+2. hba link down
+  - 
