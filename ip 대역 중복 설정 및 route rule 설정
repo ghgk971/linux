@@ -1,0 +1,7 @@
+ip 대역 중복 미권장
+https://access.redhat.com/solutions/30564
+
+
+패킷 들어온 동일한 nic로 라우팅 테이블 룰 설정
+https://access.redhat.com/solutions/288823
+https://access.redhat.com/solutions/19596
