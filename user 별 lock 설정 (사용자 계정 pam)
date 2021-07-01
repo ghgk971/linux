@@ -15,7 +15,7 @@ auth        required      pam_tally2.so onerr=fail deny=3 unlock_time=100
 
 -------------------------------------------------------------------------
 
-success 및 default 는 아래 조건을 점프할 갯수 지정
+success 및 default 는 성공 또는 실패시 기본값으로 아래 조건을 점프할 갯수 지정
   - 참고 : https://serverfault.com/questions/134471/success-n-control-syntax-in-pam-conf-pam-d-files
   - ignore 는 점프 하지 않고 바로 아래 
 
@@ -23,6 +23,11 @@ success 및 default 는 아래 조건을 점프할 갯수 지정
 또한, 아래 내용으로 success=ignore default=1 로 적용 시 crontab -l 이 되지 않는 이슈가 발생함
   - 참조 : https://access.redhat.com/solutions/1552843
 
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------
 
 
 /etc/pam.d/ 경로의 "password-auth-ac", "system-auth-ac" 파일에 아래의 예와 같이 설정 합니다.
