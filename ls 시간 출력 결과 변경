@@ -1,0 +1,19 @@
+1. ls 시간 출력 결과 변경
+  - # ls --help | grep time
+  - # ls --time-style 옵션 사용 가능
+  - 옵션은 full-iso, long-iso, iso, locale 등 존재
+  
+2. 특정 유저 적용 시
+  - 해당 유저의 .bashrc 적용
+  
+[alias 적용 및 확인]   color을 주지 않을 경우 되지 않음
+
+  - # su - [USER]
+  
+  - # vi ~/.bashrc
+    alias ls='ls --color=auto --time-style=long-iso'
+    
+  - # source ~/.bashrc
+
+  - # ls -al 
+ 
