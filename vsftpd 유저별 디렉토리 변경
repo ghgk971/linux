@@ -1,0 +1,46 @@
+1. 특정 유저만 ftp 홈 디렉토리 변경하는 방법
+
+[vsftpd 설정 변경 - user 별 설정 적용을 위한 경로 지정]
+
+  - # vi /etc/vsftpd/vsftpd.conf
+    user_config_dir=/etc/vsftpd/user_conf
+
+[유저별 설정 디렉토리 생성]
+  - # mkdir /etc/vsftpd/user_conf
+
+[유저별 설정 정의]
+  - # echo "local_root=/mst_svc01/multistep" > /etc/vsftpd/user_conf/datasftp
+
+[vsftpd 재시작]
+  - # service vsftpd restart
+
+[확인]
+  - # ftp localhost
+    datasftp 계정 접속
+  - # pwd
+    /mst_svc01/multistep 경로 확인
+
+
+3. 테스트 
+[root@rhel6 ~]# cat /etc/vsftpd/vsftpd.conf | grep user_config
+user_config_dir=/etc/vsftpd/user_conf 
+
+[root@rhel6 ~]# cat /etc/vsftpd/user_conf/test
+local_root=/home 
+
+[root@rhel6 ~]# ftp localhost (유저 - root)
+ftp> pwd
+257 "/root" 
+
+[root@rhel6 ~]# ftp localhost (유저 - test)
+ftp> pwd
+257 "/home" 
+
+[root@rhel6 ~]# ftp localhost (유저 - test_u)
+ftp> pwd
+257 "/home/test_u" 
+ 
+
+3. 참조
+  - https://access.redhat.com/solutions/44976 (ftp 사용자에게 특정 홈 디렉토리를 어떻게 할당 할 수 있습니까?)
+  - https://access.redhat.com/solutions/674163 (FTP (vsftpd) 사용자의 기본 루트 디렉토리를 변경하는 방법은 무엇입니까?)
