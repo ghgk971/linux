@@ -1,0 +1,9 @@
+1. dmesg 통해 확인
+  - # dmesg | grep HBA
+  
+2. lspci 통해 확인
+  - # lspci | grep -i fibre
+  
+3. 참조
+  - https://november11tech.tistory.com/133
+  - https://koreaninbeijing.tistory.com/518
