@@ -1,0 +1,12 @@
+1. Ctrl + Alt + Delete 비활성화
+  - # systemctl mask ctrl-alt-del.target
+    
+2. 위 설정을 했음에도 불구하고 RHEL7.4 이상 버전의 경우 Ctrl + Alt + Delete 를 2초 동안 7번 이상 입력 시 재부팅이 발생 하게되므로 아래 조치 추가 필요
+  - # vi /etc/systemd/system.conf
+    ㄴ #CtrlAltDelBurstAction=reboot-force  =>  CtrlAltDelBurstAction=none 변경 또는 해당 내용 추가
+    
+  - # systemctl daemon-reexec
+    ㄴ systemd 자체의 구성이 아닌 파일만 다시 로드하는것이므로 daemon-reload가 아닌 reexec를 입력
+
+3. 참조
+  - https://access.redhat.com/solutions/1123873
