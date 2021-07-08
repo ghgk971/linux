@@ -45,6 +45,7 @@ Filesystem Type Size Used Avail Use% Mounted on
    - https://access.redhat.com/solutions/39664    ('df'와 'du'가 데이터 사용량 / 크기에 동의하지 않는 이유는 무엇입니까?)
    - https://access.redhat.com/solutions/387953   ("희소 파일"이란 무엇이며 식별 할 수 있습니까?)
    - https://access.redhat.com/solutions/3634691  (XFS 파일 시스템은 du보다 df에서 더 많은 공간을 사용합니다.)
+   
    - https://serverfault.com/questions/57098/du-vs-df-difference                                      (du vs. df difference [duplicate])
    - https://serverfault.com/questions/275206/disk-full-du-tells-different-how-to-further-investigate (Disk full, du tells different. How to further investigate?)
    
