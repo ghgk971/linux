@@ -1,0 +1,23 @@
+1. 패키지 설치
+  - # yum install libguestfs-tools
+  
+2. qcow2 파일 권한 변경
+  - # chown 107:107 rhel.qcow2
+  
+3. mount
+  - # guestmount -a rhel-server-7.6-x86_64-kvm.qcow2 -m /dev/sda1 /tmp/test
+  - # guestmount -a rhel-server-7.6-x86_64-kvm.qcow2 -m [GUEST_PARTITION] [SERVER_DIRECTORY]
+
+4. check
+  - # df -h
+    /dev/fuse              7.9G  938M  6.9G  12% /tmp/test
+
+5. umount 
+  - # guestunmount /tmp/test/
+  
+  
+
+참조
+  - https://www.xmodulo.com/mount-qcow2-disk-image-linux.html
+  - https://www.programmersought.com/article/9295581451/
+  - https://docs.j7k6.org/mount-qcow2-disk-image-linux/
