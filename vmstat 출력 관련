@@ -1,0 +1,7 @@
+1. vmstat 1 1 출력 시 지속적으로 동일한 값 출력 됨
+  - vmstat 첫번째 줄은 시스템이 마지막으로 재부팅 된 이후 평균 값이 출력
+  - 그러므로 동일한 값이 출력됨
+  - 그 이후 값들이 현재상태의 값임
+  
+참조
+  - https://access.redhat.com/solutions/1160343 (How to read Vmstat output)
