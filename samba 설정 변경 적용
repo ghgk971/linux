@@ -1,0 +1,7 @@
+samba 설정 변경 적용 - 서비스 재시작되지 않음
+  - # smbcontrol smbd reload-config
+  
+  
+
+참조
+  - https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/system_administrators_guide/index
