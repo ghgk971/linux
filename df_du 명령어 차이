@@ -66,6 +66,6 @@ df 명령과 du 명령의 사용량은 아래와 같은 이유로 인하여 출�
    
 
 
-xfs_metadump
+xfs_metadump (그닥 필요 없는듯?)
   - https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_file_systems/checking-and-repairing-a-file-system_managing-file-systems
   
