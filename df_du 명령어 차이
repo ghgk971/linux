@@ -64,3 +64,8 @@ df 명령과 du 명령의 사용량은 아래와 같은 이유로 인하여 출�
    - https://serverfault.com/questions/57098/du-vs-df-difference                                      (du vs. df difference [duplicate])
    - https://serverfault.com/questions/275206/disk-full-du-tells-different-how-to-further-investigate (Disk full, du tells different. How to further investigate?)
    
+
+
+xfs_metadump
+  - https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_file_systems/checking-and-repairing-a-file-system_managing-file-systems
+  
