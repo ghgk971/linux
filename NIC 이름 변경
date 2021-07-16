@@ -9,7 +9,19 @@
     0000:03:00.0 Ethernet controller: Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
     0000:03:00.1 Ethernet controller: Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
   - # vi /etc/udev/rules.d/70-persistent-net.rules
-  ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:03:00.0", NAME:="primary"
-  ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:03:00.1", NAME:="app1"
+    ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:03:00.0", NAME:="primary"
+    ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:03:00.1", NAME:="app1"
 
   
+
+참조
+  - https://access.redhat.com/solutions/112643
+  - https://access.redhat.com/solutions/1301563
+  - https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/networking_guide/index#sec-Understanding_the_Predictable_Network_Interface_Device_Names
+  - https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/consistent-network-interface-device-naming_configuring-and-managing-networking
+  - https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
+  - https://www.xmodulo.com/change-network-interface-names-permanently-linux.html
+  - https://community.mellanox.com/s/article/howto-change-network-interface-name-in-linux-permanently
+  - https://wiki.debian.org/NetworkInterfaceNames
+  - https://meetup.toast.com/posts/38
+  - https://serverfault.com/questions/349052/how-to-change-persistent-net-generator-rules-to-be-pci-bus-dependent-and-not-mac
