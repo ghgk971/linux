@@ -67,6 +67,8 @@ df 명령과 du 명령의 사용량은 아래와 같은 이유로 인하여 출�
    - https://access.redhat.com/solutions/23705    (df 명령은 여유 공간이 거의 또는 전혀 표시되지 않으며 루트가 아닌 사용자의 쓰기가 "장치에 남은 공간 없음"과 함께 실패합니다.)
    - https://access.redhat.com/solutions/3947861  (RHEL8: du는 XFS 파일 시스템에서 df보다 더 많은 공간을 사용함을 보여줍니다.)
    
+   - https://access.redhat.com/solutions/1194613  (XFS : 손상이 감지되었습니다. 마운트 해제 및 xfs_repair 실행)
+   
    - https://serverfault.com/questions/57098/du-vs-df-difference                                      (du vs. df difference [duplicate])
    - https://serverfault.com/questions/275206/disk-full-du-tells-different-how-to-further-investigate (Disk full, du tells different. How to further investigate?)
    
