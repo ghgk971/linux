@@ -68,6 +68,10 @@ df 명령과 du 명령의 사용량은 아래와 같은 이유로 인하여 출�
    - https://access.redhat.com/solutions/3947861  (RHEL8: du는 XFS 파일 시스템에서 df보다 더 많은 공간을 사용함을 보여줍니다.)
    
    - https://access.redhat.com/solutions/1194613  (XFS : 손상이 감지되었습니다. 마운트 해제 및 xfs_repair 실행)
+   - https://access.redhat.com/solutions/4189291  (xfs_repair가 oom-killer에 의해 종료되었기 때문에 XFS 파일 시스템을 복구할 수 없습니다.)
+   - https://access.redhat.com/solutions/5950661  (XFS 메타데이터 손상이 감지되었습니다. xfs_repair에서 복구할 수 없습니다.)
+   - https://access.redhat.com/solutions/2802951  (xfs_repair를 실행한 후에도 여전히 메타데이터 손상 감지 메시지가 표시됨)
+   
    
    - https://serverfault.com/questions/57098/du-vs-df-difference                                      (du vs. df difference [duplicate])
    - https://serverfault.com/questions/275206/disk-full-du-tells-different-how-to-further-investigate (Disk full, du tells different. How to further investigate?)
