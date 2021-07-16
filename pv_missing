@@ -1,0 +1,7 @@
+pv missing 조치
+  - vgreduce --removemissing --force VGROOT
+
+https://access.redhat.com/solutions/190493    (RHEL에서 사용할 수 있지만 물리적 볼륨이 누락된 것으로 표시된 부분 모드의 LVM2 볼륨 그룹)
+https://access.redhat.com/solutions/2351121   (pvmove 중 오류 "vgreduce --removemissing을 고려하십시오.")
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/vg_admin
+
