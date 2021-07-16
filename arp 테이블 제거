@@ -1,0 +1,12 @@
+1. arp 전체 테이블 제거
+  - # ip -s -s neigh flush all
+  
+2. 지정하여 제거
+  - # arp -a
+  - # arp -d [IP]
+  
+  
+  
+  
+참조 
+  - https://linux-audit.com/how-to-clear-the-arp-cache-on-linux/
