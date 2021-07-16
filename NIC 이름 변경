@@ -1,1 +1,15 @@
-SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="56:6f:e7:7a:00:32", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="ens256", NAME="ens192"
+1. MAC 이용하여 변경
+  - KERNEL==은 없어도 될것으로 보여집
+  - # vi /etc/udev/rules.d/70-persistent-net.rules
+    SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="56:6f:e7:7a:00:32", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="ens192"
+
+
+2. PCI를 이용하여 변경
+  - # lspci -D | grep Ethernet
+    0000:03:00.0 Ethernet controller: Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+    0000:03:00.1 Ethernet controller: Broadcom Corporation NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+  - # vi /etc/udev/rules.d/70-persistent-net.rules
+  ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:03:00.0", NAME:="primary"
+  ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:03:00.1", NAME:="app1"
+
+  
