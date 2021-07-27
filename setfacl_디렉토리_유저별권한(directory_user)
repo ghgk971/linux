@@ -1,6 +1,6 @@
 https://5log.tistory.com/207
 
 
-    - setfacl -R -m user::rwx,user:[NAS 계정 #1]:rwx,user:[NAS 계정 #2]:rwx,group::rwx,group:samba:rwx,other::---,default:user::rwx,default:user:[NAS 계정 #1]:rwx,default:user:[NAS 계정 #2]:rwx,default:group::rwx,default:group:samba:rwx,default:other::--- .[NAS 파일시스템 MountPoint 경로]
+- # setfacl -R -m user::rwx,user:[NAS 계정 #1]:rwx,user:[NAS 계정 #2]:rwx,group::rwx,group:samba:rwx,other::---,default:user::rwx,default:user:[NAS 계정 #1]:rwx,default:user:[NAS 계정 #2]:rwx,default:group::rwx,default:group:samba:rwx,default:other::--- .[NAS 파일시스템 MountPoint 경로]
     
     
