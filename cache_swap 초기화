@@ -1,0 +1,48 @@
+Cache Memory 개념 
+속도가 빠른 장치(CPU)와 느린 장치(Memory) 사이에서 속도 차에 따른 병목 현상을 줄이기 위한 범용 메모리다. 자주 사용하는 데이터를 캐시 메모리에 저장한 다음, 재사용할 때는 메인 메모리가 아닌 
+캐시 메모리에 접근하도록 처리 속도를 높인다.[1]
+
+Cache Memory 초기화 이유 
+캐시메모리의 공간이 한정되어 있기 때문에 모든 데이터를 캐시 메모리에 저장할 수 없다.  캐시 메모리 사용량이 높을 경우 해당 cache 기능을 끄거나 주기적으로 비움으로써 성능을 개선할 수 있다.[2]
+
+Cache Memory 초기화 방법 
+1. 서버 메모리 확인
+    # free -m
+
+
+2. 캐시 메모리 비우기 
+   #  sync && echo 3 > /proc/sys/vm/drop_caches
+
+
+3. crontab을 사용하여 시스템이 주기적으로 메모리 관리
+
+crontab 편모드에서 아래와 같이 입력 
+# crontab -e
+
+
+매일 새벽 3시에 자동으로 캐시 메모리를 비움
+Swap Memory 개념 
+서버에서 RAM의 용량이 가득찰 때 사용되는 여유 공간으로, 시스템이 처리하고 있는 데이터를 저장할 RAM이 충분하지 않을 때 Swap 공간에 이 데이터를 기록한다.[3]​
+
+
+
+
+
+Swap Memory 초기화 방법 
+1. 서버 메모리 확인
+    # free
+
+
+2. Swap 메모리 초기화 후 확인 
+    # swapoff –a && swapon -a
+
+swapoff -a : Swap 메모리 사용 중지
+
+swapon -a : Swap 메모리 사용 활성화 
+
+
+
+
+참조
+  - https://docs.sangyunlee.com/undefined/functionality/undefined
+  - https://blog.asamaru.net/2016/01/19/centos-emptying-the-buffers-cache/               linux buffer/cache 비우기
