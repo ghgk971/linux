@@ -10,3 +10,6 @@ https://access.redhat.com/solutions/390273      Cache 아래에 사용 가능한
 
 https://access.redhat.com/solutions/536933      가상 머신의 높은 캐시 메모리 사용량으로 인해 스와핑이 발생함
 
+https://access.redhat.com/solutions/3383811     swappiness sysctl이 RHEL7에서 작동하는 방식과 시스템이 스왑을 선택하는 조건
+
+https://access.redhat.com/solutions/118803      Red Hat Enterprise Linux에서 캐시 메모리를 해제하는 대신 스왑 공간이 사용되는 이유.
