@@ -1,0 +1,12 @@
+pam required 를 고급 옵션으로 설정 시
+
+
+auth required pam_securetty.so  -> auth [user_unknown=ignore success=ok ignore=ignore default=bad] pam_securetty.so
+
+required => [success=ok new_authtok_reqd=ok ignore=ignore default=bad]
+
+
+
+https://itknowledge.tistory.com/32
+https://serverfault.com/questions/644226/how-do-pam-advanced-options-work-exactly/645625
+http://wpollock.com/AUnix2/PAM-Help.htm
