@@ -97,3 +97,12 @@ https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/ne
 
 기존 설정 기반으로 생성
   - #nmcli connection modify bond0 master team0nmcli connection modify bond1 master team0
+  
+  
+  
+  
+  
+  
+
+참조
+  - 옵션 : http://www.ourprivate.space/linux/1851.html
