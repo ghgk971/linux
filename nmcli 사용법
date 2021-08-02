@@ -101,8 +101,14 @@ https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/ne
   
   
   
-  
-  
+------------------------------------------------------
+
+teaming GUI 설정
+  - # dnf install nm-connection-editor xauth mesa-libGL.x86_64
+  - # nm-connection-editor
+  - 설정
+
+
 
 참조
   - 옵션 : http://www.ourprivate.space/linux/1851.html
