@@ -1,5 +1,7 @@
 1. Ctrl + Alt + Delete 비활성화
   - # systemctl mask ctrl-alt-del.target
+  - mask 설정 시 /etc/systemd/system/ctrl-alt-del.target 로 심볼릭 링크가 생성되며, /dev/null로 연결됨
+  - mask 가 설정되지 않을 경우 ctrl+alt+del이 동작하므로 주의
     
 2. 위 설정을 했음에도 불구하고 RHEL7.4 이상 버전의 경우 Ctrl + Alt + Delete 를 2초 동안 7번 이상 입력 시 재부팅이 발생 하게되므로 아래 조치 추가 필요
   - # vi /etc/systemd/system.conf
