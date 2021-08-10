@@ -8,3 +8,6 @@ https://access.redhat.com/solutions/32769   (RHEL에서 페이지 캐시의 크�
 https://access.redhat.com/solutions/166143  (어쨌든 RHEL에서 캐시 메모리를 처리하는 프로세스를 알 수 있습니까?)
 https://access.redhat.com/solutions/188283  (커널이 캐시된 메모리를 해제할 수 없는 이유는 무엇입니까?)
 https://access.redhat.com/solutions/441263  (Red Hat Enterprise Linux의 다른 영역 워터마크는 무엇입니까?) - page low / free
+
+https://access.redhat.com/solutions/22177   ("ps"에서 보고된 메모리 사용량이 "free"에서 보고된 것과 크게 다른 이유는 무엇입니까?)
+https://access.redhat.com/articles/216653   (Red Hat Enterprise Linux에서 메모리 사용량 분석)
