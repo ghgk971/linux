@@ -5,9 +5,10 @@ https://access.redhat.com/solutions/41520   (교환된 페이지를 물리적 �
 https://access.redhat.com/solutions/44127   (내 시스템에서 스왑 메모리 사용률이 매우 낮은 이유 또는 시스템에서 스왑 메모리를 사용할 수 있는 시기와 상황)
 https://access.redhat.com/solutions/58689   (메모리 관리 질문)
 https://access.redhat.com/solutions/32769   (RHEL에서 페이지 캐시의 크기를 제어하는 방법은 무엇입니까?)
-https://access.redhat.com/solutions/166143  (어쨌든 RHEL에서 캐시 메모리를 처리하는 프로세스를 알 수 있습니까?)
 https://access.redhat.com/solutions/188283  (커널이 캐시된 메모리를 해제할 수 없는 이유는 무엇입니까?)
 https://access.redhat.com/solutions/441263  (Red Hat Enterprise Linux의 다른 영역 워터마크는 무엇입니까?) - page low / free
+
+https://access.redhat.com/solutions/166143  (어쨌든 RHEL에서 캐시 메모리를 처리하는 프로세스를 알 수 있습니까?) - 캐시 어느 프로세스에서 사용하는지 확인 불가
 
 https://access.redhat.com/solutions/22177   ("ps"에서 보고된 메모리 사용량이 "free"에서 보고된 것과 크게 다른 이유는 무엇입니까?)
 https://access.redhat.com/articles/216653   (Red Hat Enterprise Linux에서 메모리 사용량 분석)
