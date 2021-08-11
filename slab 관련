@@ -5,6 +5,11 @@ https://access.redhat.com/solutions/2850631   perf를 사용하여 슬랩 할당
 https://access.redhat.com/solutions/386343    다른 시스템에서 읽을 수 있는 성능 데이터를 어떻게 수집합니까?
 https://access.redhat.com/solutions/4831151   rhel7: `kmalloc-16` 슬래브가 증가하면 RHEL 7 서버에서 메모리 부족 상태가 발생합니다.
 https://access.redhat.com/solutions/5640461   매우 큰 덴트리 슬래브로 인한 문제
+https://access.redhat.com/solutions/2968211   응용 프로그램이 때때로 느리고 슬래브 사용량이 높습니다.
+https://access.redhat.com/solutions/55818     Red Hat Enterprise Linux에서 dentry_cache / dentry slab 캐시 크기가 지속적으로 증가함
+https://access.redhat.com/solutions/64667     nfs_inode_cache 사용량이 RHEL 5 및 RHEL 6의 이전 커널에 비해 높으며 pdflush/플러시 CPU 소모로 인해 시스템이 중단될 수 있습니다.
+https://access.redhat.com/solutions/481743    nfs_inode_cache 슬랩 캐시가 매우 큽니다.
+
 
 https://access.redhat.com/articles/781733      시스템에서 사용 중인 메모리 양 확인
 https://access.redhat.com/articles/781673      커널이 할당하는 메모리의 양과 개체의 종류 결정
