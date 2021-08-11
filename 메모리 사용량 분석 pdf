@@ -1,3 +1,6 @@
+https://access.redhat.com/articles/216653
+https://access.redhat.com/sites/default/files/attachments/memory_usage.pdf
+
 개요
 여유 메모리 부족은 더 큰 문제의 증상이거나 전혀 걱정할 필요가 없습니다. 운영 체제마다 메모리를 처리하는 방식이 다르므로 Linux 커널에서 메모리를 처리하는 방법에 대한 기본적인 이해부터 
 시작하는 것이 중요합니다.
