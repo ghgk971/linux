@@ -1,0 +1,7 @@
+https://access.redhat.com/solutions/386343       (다른 시스템에서 읽을 수 있는 성능 데이터를 어떻게 수집합니까?)
+https://access.redhat.com/solutions/2850631      (perf를 사용하여 슬랩 할당을 추적하는 방법)
+
+
+
+perf 작성된 스크립트를 실행하기 위해서는 kernel-debuginfo kernel-debuginfo-common이 설치 되어있어야 함
+
