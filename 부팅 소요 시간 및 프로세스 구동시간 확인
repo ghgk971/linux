@@ -44,3 +44,7 @@
                                   └─lvm2-lvmetad.service @229ms
                                     └─lvm2-lvmetad.socket @165ms
                                       └─-.slice
+
+
+참조
+  - https://www.lesstif.com/system-admin/systemd-analyze-booting-time-93127400.html
