@@ -3,6 +3,25 @@
     Startup finished in 973ms (kernel) + 3.832s (initrd) + 14.823s (userspace) = 19.628s
 
 2. 프로세스 별 소요 시간 확인
+  - # systemd-analyze blame
+    8.797s network.service
+    2.822s kdump.service
+    2.230s dev-mapper-rhel\x2droot.device
+    1.576s postfix.service
+    1.571s tuned.service
+    1.372s lvm2-monitor.service
+    1.316s lvm2-pvscan@8:16.service
+    585ms boot.mount
+    334ms auditd.service
+    317ms var-lib-nfs-rpc_pipefs.mount
+    293ms iscsi.service
+    245ms lvm2-pvscan@8:2.service
+    242ms systemd-vconsole-setup.service
+    215ms rhel-import-state.service
+    196ms rhnsd.service
+    139ms polkit.service
+    ----생략----
+
   - # systemd-analyze critical-chain
     The time after the unit is active or started is printed after the "@" character.
     The time the unit takes to start is printed after the "+" character.
