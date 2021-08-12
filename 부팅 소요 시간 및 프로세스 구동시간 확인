@@ -1,0 +1,27 @@
+1. 부팅 소요 시간 확인
+  - # systemd-analyze
+    Startup finished in 973ms (kernel) + 3.832s (initrd) + 14.823s (userspace) = 19.628s
+
+2. 프로세스 별 소요 시간 확인
+  - # systemd-analyze critical-chain
+    The time after the unit is active or started is printed after the "@" character.
+    The time the unit takes to start is printed after the "+" character.
+
+    multi-user.target @13.305s
+    └─tuned.service @11.733s +1.571s
+      └─network.target @11.696s
+          └─network.service @2.898s +8.797s
+            └─basic.target @2.820s
+              └─sockets.target @2.820s
+                └─iscsiuio.socket @2.820s
+                  └─sysinit.target @2.817s
+                    └─auditd.service @2.475s +334ms
+                      └─systemd-tmpfiles-setup.service @2.351s +122ms
+                        └─rhel-import-state.service @2.135s +215ms
+                          └─local-fs.target @2.127s
+                            └─boot.mount @1.541s +585ms
+                              └─local-fs-pre.target @1.539s
+                                └─lvm2-monitor.service @166ms +1.372s
+                                  └─lvm2-lvmetad.service @229ms
+                                    └─lvm2-lvmetad.socket @165ms
+                                      └─-.slice
