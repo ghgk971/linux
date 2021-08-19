@@ -1,0 +1,31 @@
+1. disk 통째로 이동
+  - # pvmove [source-PV] [destination-PV]
+  
+2. lv 지정하여 이동
+  - # pvmove -n [lv_name] [source-PV] [destination-PV]
+  
+3. 영역 지정하여 이동
+  - # pvmove [source-PV:0-999] [destination-PV]
+  - # pvmove /dev/sdc1:0-999 /dev/sdd1
+  
+  
+  
+pvmove는 storage 변경 또는 lv 이동을 위해 사용하게 됨
+옮길 새로운 disk 를 동일한 vg에 추가하고, lv 및 데이터 이동을 완료한 이후 이전 disk를 vg에서 제거하는 형태로 진행
+
+그러므로 순서는 아래와 같다.
+1. 새로운 lun 추가
+2. 해당 lun pv 생성
+3. vgextend로 vg에 해당 pv 추가
+4. pvmove 진행
+5. vgreduce로 vg에 이전 disk 제거
+6. pv 제거
+
+
+
+참조
+https://access.redhat.com/solutions/3376691   (pvmove를 사용하여 모든 범위를 이동하는 대신 특정 LV에 속한 특정 범위를 이동하는 방법은 무엇입니까?)
+https://access.redhat.com/solutions/4255651   (하나의 물리적 볼륨에서 여러 물리적 볼륨으로 'pvmove'를 수행하는 방법은 무엇입니까?)
+https://access.redhat.com/solutions/30412     (RHEL 시스템에서 중지되거나 취소된 pvmove에서 복구하는 방법)
+https://access.redhat.com/solutions/391383    (동일한 볼륨 그룹의 다른 물리적 볼륨에 대해 여러 "pvmove" 명령이 허용됩니까?)
+https://access.redhat.com/solutions/115713    (pvmove는 새로운 물리적 볼륨에 사용되지 않은 익스텐트를 복사합니다.)
