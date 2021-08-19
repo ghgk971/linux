@@ -8,7 +8,9 @@
   - # pvmove [source-PV:0-999] [destination-PV]
   - # pvmove /dev/sdc1:0-999 /dev/sdd1
   
-  
+4. pv 이동 후 vg name 변경 방법
+  - # vgsplit [before-vg] [after-vg]
+  - https://access.redhat.com/solutions/3110991    (vgsplit을 사용하여 한 디스크에서 다른 디스크로 논리 볼륨 마이그레이션)
   
 pvmove는 storage 변경 또는 lv 이동을 위해 사용하게 됨
 옮길 새로운 disk 를 동일한 vg에 추가하고, lv 및 데이터 이동을 완료한 이후 이전 disk를 vg에서 제거하는 형태로 진행
