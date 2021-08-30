@@ -20,18 +20,22 @@ ps_mem 파일 이용
   - # ps -eo size,pid,user,command --sort -size | \
     awk '{ hr=$1/1024 ; printf("%13.2f Mb ",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf("%s ",$x) } print "" }' |\
     cut -d "" -f2 | cut -d "-" -f1
-  - 참조 : https://stackoverflow.com/questions/131303/how-can-i-measure-the-actual-memory-usage-of-an-application-or-process
+  - 참조
+  - https://stackoverflow.com/questions/131303/how-can-i-measure-the-actual-memory-usage-of-an-application-or-process
   
 2. ps_mem 이용하여 확인
   - # yum install ps_mem
   - # ps_mem
   - # ps_mem -p $(pgrep -d, -u [USER])
-  - 참조 : https://www.2daygeek.com/ps_mem-report-core-memory-usage-accurately-in-linux/
+  - 참조
+  - https://www.2daygeek.com/ps_mem-report-core-memory-usage-accurately-in-linux/
+  - https://github.com/pixelb/ps_mem
   
 3. pmap 이용하여 확인
   - # pmap [pid]
   - # pmap -x `pgrep -flu [USER] | awk '{print $1}'` | grep total | awk '{total +=$4};END {print total/1024 " MiB"}'
   - # pmap -x `pgrep -flu [USER] | awk '{print $1}'` > list.txt
+  - 참조
   - https://shaeod.tistory.com/705
   - https://linuxhint.com/check_memory_usage_process_linux/
   
