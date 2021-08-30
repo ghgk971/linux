@@ -14,3 +14,6 @@ https://access.redhat.com/solutions/22177   ("ps"에서 보고된 메모리 사�
   - # ps aux | grep -v "USER" | awk 'BEGIN{sum=0}{sum+=$6}END{print sum}'
 
 https://access.redhat.com/articles/216653   (Red Hat Enterprise Linux에서 메모리 사용량 분석)
+
+
+https://access.redhat.com/solutions/414533  (Red Hat Enterprise Linux에서 공유 메모리 사용량을 모니터링하고 구성하는 방법)
