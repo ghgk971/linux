@@ -25,6 +25,7 @@ ps_mem 파일 이용
 2. ps_mem 이용하여 확인
   - # yum install ps_mem
   - # ps_mem
+  - # ps_mem -p $(pgrep -d, -u [USER])
   - 참조 : https://www.2daygeek.com/ps_mem-report-core-memory-usage-accurately-in-linux/
   
 3. pmap 이용하여 확인
