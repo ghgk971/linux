@@ -29,6 +29,7 @@ ps_mem 파일 이용
   
 3. pmap 이용하여 확인
   - # pmap [pid]
+  - # pmap -x `pgrep -flu [USER] | awk '{print $1}'` | grep total | awk '{total +=$4};END {print total/1024 " MiB"}'
   - https://shaeod.tistory.com/705
   - https://linuxhint.com/check_memory_usage_process_linux/
   
@@ -54,3 +55,7 @@ function sysmon_main() {
 sysmon_main | sort -bnr -k3
 
   - 참조 : https://linuxhint.com/check_memory_usage_process_linux/
+
+
+5. smem 이용
+  - # smem -turk -U [USER]
