@@ -25,7 +25,7 @@ ps_mem 파일 이용
 2. ps_mem 이용하여 확인
   - # yum install ps_mem
   - # ps_mem
-  - 참조 : https://stackoverflow.com/questions/131303/how-can-i-measure-the-actual-memory-usage-of-an-application-or-process
+  - 참조 : https://www.2daygeek.com/ps_mem-report-core-memory-usage-accurately-in-linux/
   
 3. pmap 이용하여 확인
   - # pmap [pid]
