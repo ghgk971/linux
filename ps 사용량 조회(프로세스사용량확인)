@@ -31,6 +31,7 @@ ps_mem 파일 이용
 3. pmap 이용하여 확인
   - # pmap [pid]
   - # pmap -x `pgrep -flu [USER] | awk '{print $1}'` | grep total | awk '{total +=$4};END {print total/1024 " MiB"}'
+  - # pmap -x `pgrep -flu [USER] | awk '{print $1}'` > list.txt
   - https://shaeod.tistory.com/705
   - https://linuxhint.com/check_memory_usage_process_linux/
   
