@@ -1,0 +1,9 @@
+disk
+  - https://access.redhat.com/solutions/3196
+  
+server 
+  - https://bugzilla.redhat.com/show_bug.cgi?id=1468264    (# dmidecode -s system-serial-number)
+  - https://access.redhat.com/solutions/275263     (rhel6 - # lshal)
+  - https://access.redhat.com/solutions/2071353    (rhel7 - # lshw)
+  
+  https://access.redhat.com/solutions/7798
