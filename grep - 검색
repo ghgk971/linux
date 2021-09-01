@@ -1,0 +1,5 @@
+1. grep 사용 시 -를 포함한 내용 검색
+  - # cat test.txt | grep -- "-hb"
+  
+2. 참조
+  - https://stackoverflow.com/questions/2427913/how-can-i-grep-for-a-string-that-begins-with-a-dash-hyphen
