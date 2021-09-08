@@ -8,3 +8,5 @@ https://access.redhat.com/solutions/3485471  "nofile" 제한을 늘리기 위해
 https://access.redhat.com/solutions/43926    파일 제한을 설정한 후 로그인이 거부되었습니다. 보안 로그에 "오류: PAM: pam_open_session(): 권한이 거부됨" 오류가 표시됩니다.
 https://access.redhat.com/solutions/60746    Red Hat Enterprise Linux에서 열린 파일 수 제한을 늘리는 방법은 무엇입니까?
 https://access.redhat.com/solutions/4713351  nofile ulimit 또는 fs.file-max 커널 조정 가능 값이 너무 높으면 속도가 느려질 수 있습니다.
+
+https://access.redhat.com/solutions/1257953  RHEL 7 및 systemd에서 서비스에 대한 제한을 설정하는 방법
