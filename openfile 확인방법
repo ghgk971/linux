@@ -1,0 +1,10 @@
+1. openfile 확인 방법
+  - # lsof
+    FD 열이 숫자로 되어 있는 것만 열려있는 파일임, 그러므로 아래와 같이 egrep으로 제외 시켜 확인할 수 있음
+    
+  - # lsof | egrep -v 'SIZE/OFF|mem|cwd|rtd|txt'
+  
+참조
+  - https://access.redhat.com/solutions/185613    파일 설명자를 계산할 때 fs.file-nr 및 lsof 출력이 다른 이유는 무엇입니까?
+  - https://access.redhat.com/solutions/1210583   LSOF는 '/proc/<PID>/fd'의 열린 파일 수와 다른 수를 보여줍니다.
+  - 
