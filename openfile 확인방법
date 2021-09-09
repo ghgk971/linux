@@ -4,6 +4,9 @@
     
   - # lsof | egrep -v 'SIZE/OFF|mem|cwd|rtd|txt'
   
+  유저 지정 시
+  - # lsof -u [USER]
+  
 참조
   - https://access.redhat.com/solutions/185613    파일 설명자를 계산할 때 fs.file-nr 및 lsof 출력이 다른 이유는 무엇입니까?
   - https://access.redhat.com/solutions/1210583   LSOF는 '/proc/<PID>/fd'의 열린 파일 수와 다른 수를 보여줍니다.
