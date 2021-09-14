@@ -1,2 +1,3 @@
 https://access.redhat.com/solutions/1241943    `net.core.netdev_max_backlog` 및 `net.core.netdev_budget` sysctl 커널 튜너블을 조정하는 방법은 무엇입니까?
 https://access.redhat.com/articles/1391433     Red Hat Enterprise Linux 네트워크 성능 조정 가이드
+https://steemit.com/linux/@blake.heo/linux-net-core-netdevmaxbacklog-tuning
