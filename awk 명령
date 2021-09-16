@@ -5,3 +5,24 @@ https://recipes4dev.tistory.com/171
 https://wikidocs.net/29643
 
 https://kldp.org/node/116235    (특정필드 이후 모두 출력)
+
+
+
+[root@cs1 ~]# cat 111
+bind-chroot.x86_64 32:9.11.4-26.P2.el7_9.7
+bind-libs-lite.x86_64 32:9.11.4-26.P2.el7_9.3
+bind-libs-lite.x86_64 32:9.11.4-26.P2.el7_9.7
+bind-libs.x86_64 32:9.11.4-26.P2.el7_9.3
+bind-libs.x86_64 32:9.11.4-26.P2.el7_9.7
+bind-license.noarch 32:9.11.4-26.P2.el7_9.3
+bind-license.noarch 32:9.11.4-26.P2.el7_9.7
+
+
+[root@cs1 ~]# cat 111 | sed 's/ /./g' | awk -F '.' '{ print $1 "-" substr($0,index($0,$3)) "." $2}'
+bind-chroot-32:9.11.4-26.P2.el7_9.7.x86_64
+bind-libs-lite-32:9.11.4-26.P2.el7_9.3.x86_64
+bind-libs-lite-32:9.11.4-26.P2.el7_9.7.x86_64
+bind-libs-32:9.11.4-26.P2.el7_9.3.x86_64
+bind-libs-32:9.11.4-26.P2.el7_9.7.x86_64
+bind-license-32:9.11.4-26.P2.el7_9.3.noarch
+bind-license-32:9.11.4-26.P2.el7_9.7.noarch
