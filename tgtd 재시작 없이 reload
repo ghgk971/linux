@@ -4,5 +4,37 @@
 2. tid 및 설정 확인
   - # tgt-admin --show
   
+  
+
+#tgtadm --lld iscsi --op new --mode target --tid 1 -T iqn.2013.09.com.test:test1
+#tgtadm --lld iscsi --op show --mode target
+Target 1: iqn.2013.09.com.test:test1                     //tid번호를 나타낸다.
+    System information:
+        Driver: iscsi
+        State: ready
+    I_T nexus information:
+    LUN information:
+        LUN: 0                                                     //lun번호를 나타낸다.
+            Type: controller
+            SCSI ID: IET     00010000
+            SCSI SN: beaf10
+            Size: 0 MB, Block size: 1
+            Online: Yes
+            Removable media: No
+            Prevent removal: No
+            Readonly: No
+            Backing store type: null
+            Backing store path: None
+            Backing store flags:
+    Account information:
+    ACL information: 
+
+or
+
+#tgt-admin -s                                      //스크립트 명령어로 쉽게 확인이 가능하다.
+
+
+
 참조 
   - https://m.blog.naver.com/PostView.nhn?blogId=zltmwnffldpt&logNo=221030824954&proxyReferer=https:%2F%2Fwww.google.com%2F (항목 3)
+  - https://thinkfarm.tistory.com/entry/ISCSI-%EC%84%A4%EC%A0%95
