@@ -1,0 +1,5 @@
+1. sha 암호화
+  - # yum install perl-Digest-SHA
+  - # echo -n "redhat" | shasum -a 512
+  
+  - 참조 : https://nine01223.tistory.com/131
