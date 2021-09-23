@@ -6,3 +6,7 @@ https://access.redhat.com/solutions/726753    tcp_retries2 매개변수에 어�
 https://unix.stackexchange.com/questions/94770/what-does-net-ipv4-tcp-app-win-do    net.ipv4.tcp_app_win은 무엇을 합니까?
 http://www.acc.umu.se/~maswan/linux-netperf.txt      TCP 성능 조정 - Linux를 조정하는 방법
 https://stackoverflow.com/questions/47723793/in-linux-how-do-i-determine-optimal-value-of-optmem-max     Linux에서 optmem_max의 최적 값을 어떻게 결정합니까?
+https://access.redhat.com/solutions/2259831    응용 프로그램이 net.core.rmem_max 및 net.core.wmem_max 커널 매개변수를 재정의할 수 있습니까?
+https://access.redhat.com/solutions/168483     특정 네트워크 연결에서 더 나은 TCP 성능을 위해 RHEL을 어떻게 조정합니까?
+https://access.redhat.com/solutions/170713     네트워크 버퍼 사용량을 어떻게 모니터링합니까?
+https://access.redhat.com/solutions/369563     TCP 소켓 버퍼를 어떻게 조정할 수 있습니까?
