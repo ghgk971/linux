@@ -5,3 +5,4 @@ https://access.redhat.com/solutions/448533    net.ipv4.tcp_syn_retries를 5로, 
 https://access.redhat.com/solutions/726753    tcp_retries2 매개변수에 어떤 값을 설정해야 합니까?
 https://unix.stackexchange.com/questions/94770/what-does-net-ipv4-tcp-app-win-do    net.ipv4.tcp_app_win은 무엇을 합니까?
 http://www.acc.umu.se/~maswan/linux-netperf.txt      TCP 성능 조정 - Linux를 조정하는 방법
+https://stackoverflow.com/questions/47723793/in-linux-how-do-i-determine-optimal-value-of-optmem-max     Linux에서 optmem_max의 최적 값을 어떻게 결정합니까?
