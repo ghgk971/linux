@@ -1,0 +1,12 @@
+1. 파일 선정
+  - # find [경로 및 파일 이름 유형] [-atime, -ctime, -mtime] [+일자(초과)] 
+  - ex) find /test/test*.log -atime +14 (access time 14일 초과하는 파일 확인)
+  
+2. 파일 검색 기준 (시각 표시 방법)
+  - 참조 : https://jootc.com/p/201901272620
+  
+3. crontab 자동 등록
+  - # crontab -e
+    * * * * * find /test/test*.log -atime +14 -exec rm -rf {} ];
+    
+  - 참조 : https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=parkjjh&logNo=220000210793
