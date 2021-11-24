@@ -1,0 +1,4 @@
+1. ssd trim
+  - # fstrim [경로] -v
+  - ex) fstrim /data -v
+  
