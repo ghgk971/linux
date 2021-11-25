@@ -2,3 +2,5 @@
   - # fstrim [경로] -v
   - ex) fstrim /data -v
   
+참조
+  - https://rageworx.pe.kr/1585
