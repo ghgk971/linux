@@ -1,0 +1,13 @@
+1. 로그파일 용량 확인
+  - # du -sh *
+  
+2. 로그 백업 (필요한 경우)
+  - # cp nginx.access.log nginx.access.log_bak
+  
+3. 로그파일 내용 제거
+  - # truncate -s 0 nginx.access.log
+  
+  
+
+참조
+  - https://blog.1023labs.com/2018/09/ubuntu-nginx-truncate-log.html
