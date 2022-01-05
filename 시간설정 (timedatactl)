@@ -1,0 +1,20 @@
+1. 설정 확인
+  - # timedatactl status
+  
+2. 사용 가능 zone 확인
+  - # timedatectl list-timezones
+  - # timedatectl list-timezones | grep -i seoul
+  
+3. 설정 변경
+  - # timedatactl set-timezone Asia/Seoul
+  
+4. 확인
+  - # timedatactl status
+  - # ls -al /etc/localtime
+  
+5. 재부팅 시 초기화 되는 경우
+  - # tzselect 명령을 사용하여 타임존 설정
+  - /etc/profile 에 TZ='Asia/Seoul'; export TZ 설정 필요
+  
+참조
+  - https://velog.io/@no0101/CentOS-%ED%83%80%EC%9E%84%EC%A1%B4Time-Zone-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0
