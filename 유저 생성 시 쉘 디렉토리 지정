@@ -1,0 +1,4 @@
+유저 생성 시 기본 디렉토리 및 쉘 지정
+  - # cat /etc/default/useradd
+    SHELL 변경
+    HOME 변경
