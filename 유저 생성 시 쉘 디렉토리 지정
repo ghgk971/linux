@@ -1,8 +1,13 @@
-유저 생성 시 기본 디렉토리 및 쉘 지정
+1. 유저 생성 시 기본 디렉토리 및 쉘 지정
   - # cat /etc/default/useradd
     SHELL 변경
     HOME 변경
 
 
+2. ubuntu 유저 홈 디렉토리 생성
+  - # useradd -m 
+  - -m 옵션을 추가하여야 홈디렉토리가 생성됨
+  
+  
 https://tragramming.tistory.com/85
 
