@@ -3,3 +3,25 @@
   
 2. 참조
   - https://stackoverflow.com/questions/2427913/how-can-i-grep-for-a-string-that-begins-with-a-dash-hyphen
+
+
+
+-----------------------
+
+1. grep 에서 . 문자 확인
+  - 메타문자 "."가 아닌 일반문자 "." 을 검색
+  - # grep -F "."
+  
+
+참조
+  - https://www.psjco.com/13
+  
+  
+  
+------------------------
+
+1. grep 완전 일치 내용 확인
+  - 해당 행에 내용이 완전 일치하는 경우
+  - # grep -x "hello"
+  
+  
