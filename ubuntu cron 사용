@@ -1,0 +1,5 @@
+cron 등록 시 아래 오류 발생
+Failure setting user credentials
+
+/etc/pam.d/common-auth
+pam_tally2.so 설정이 잘못되지는 않았는지 확인 필요
