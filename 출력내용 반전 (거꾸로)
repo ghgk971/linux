@@ -1,0 +1,8 @@
+1. 출력 내용 거꾸로
+  - # echo "test" | rev
+    tset
+    
+2. 사용 할 수 있는  방법
+  - # echo $SHELL | rev | cut -d / -f 1 | rev
+    zsh
+  
