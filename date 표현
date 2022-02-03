@@ -1,0 +1,10 @@
+1. date 표현
+  - # date +%Y%m%d
+    20220203
+
+2. 1일 전
+  - # date +%Y%m%d -d "-1 days"
+  
+
+참조
+  - https://www.lesstif.com/lpt/linux-date-40436076.html
