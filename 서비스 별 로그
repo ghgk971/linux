@@ -1,0 +1,5 @@
+1. 서비스 별 로그 확인
+  - # journalctl -u [SERVICE_NAME]
+  - # journalctl -u zabbix-server
+  
+  https://unix.stackexchange.com/questions/225401/how-to-see-full-log-from-systemctl-status-service
