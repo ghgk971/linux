@@ -1,0 +1,16 @@
+ubuntu sh 스크립트 실행 시 source not found 출력
+
+1. sh 쉘 확인
+  - # ls -al /bin/sh (dash로 연결되어 있음)
+  - ubuntu 6.06 버전에서 bash를 dash로 변경
+  
+2. source  사용 방법
+  - source를 . 으로 대체
+  
+
+참조
+https://storycompiler.tistory.com/101 
+
+[source . 대체]
+https://stackoverflow.com/questions/13702425/source-command-not-found-in-sh-shell
+https://askubuntu.com/questions/504546/error-message-source-not-found-when-running-a-script
