@@ -1,0 +1,13 @@
+1. tar 특정 파일 제외
+  - # tar cvfz [tar_name.tar.gz] --excloude [file_name]
+  - ex) # tar cvfz test.tar.gz --excloude /test/a.txt
+  
+  
+2. tar 특정 디렉토리 제외
+  - # tar cvfz [tar_name.tar.gz] --excloude [directory_name]
+  - ex) # tar cvfz test.tar.gz --excloude /test/a_dir
+  
+3. 다수 파일 제외 (디렉토리도 동일)
+  - # tar cvfz [tar_name.tar.gz] --excloude [file_name] --excloude [file_name]
+  - ex) # tar cvfz test.tar.gz --excloude /test/a.txt --excloude b.txt
+  
