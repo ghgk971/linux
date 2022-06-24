@@ -1,0 +1,7 @@
+1. ubuntu 20.10 이상
+  - # atp-get update
+  - # apt-get install skopeo
+  - https://github.com/containers/skopeo/blob/main/install.md
+  
+2. 이하 및 다른 
+https://software.opensuse.org/download/package?package=skopeo&project=devel%3Akubic%3Alibcontainers%3Astable
