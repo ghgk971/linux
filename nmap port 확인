@@ -1,4 +1,5 @@
 1. nmap 열려있는 port 확인
+  - # nmap -sT -p- [IP] (TCP 포트)
   - # nmap -sS [IP]
 
 
