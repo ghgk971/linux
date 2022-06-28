@@ -1,0 +1,6 @@
+1. nmap 열려있는 port 확인
+  - # nmap -sS [IP]
+
+
+http://www.linuxlab.co.kr/docs/00-05-2.htm
+https://nevertrustbrutus.tistory.com/170
