@@ -1,3 +1,24 @@
+1. 파일 만들기
+# vi /etc/systemd/system/jenkins-agent.service
+[Unit]
+Description=Jenkins Agent Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+User=ubuntu
+ExecStart=/home/ubuntu/jenkins-agent.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+2. 실행 및 활성화
+  - # systemctl start jenkins-agent
+  - # systemctl enable jenkins-agent
+
+
 참조
   - https://fmd1225.tistory.com/93
   - https://sysops.tistory.com/67
