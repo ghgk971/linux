@@ -1,0 +1,30 @@
+SSL connection error: error:141A318A:SSL routines:tls_process_ske_dhe:dh key too small 오류 발생
+
+openssl 문제
+
+1. 아래 파일 수정
+ - /etc/ssl/openssl.cnf
+
+상단
+openssl_conf = default_conf
+
+하단
+[ default_conf ]
+
+ssl_conf = ssl_sect
+
+[ssl_sect]
+
+system_default = ssl_default_sect
+
+[ssl_default_sect]
+MinProtocol = TLSv1.2
+CipherString = DEFAULT:@SECLEVEL=1
+
+2. openssl 설정 추가
+ - # export OPENSSL_CONF=/path/to/my/openssl.cnf
+
+
+참조
+ - https://ivorycirrus.github.io/TIL/openssl-seclevel/
+ - https://askubuntu.com/questions/1233186/ubuntu-20-04-how-to-set-lower-ssl-security-level
